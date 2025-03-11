@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import catService from '../../services/catServices';
+import CatCard from '../CatCard/CatCard';
 
 
 
@@ -16,6 +17,9 @@ const CatsSlider = () => {
         }
     }
     
+    useEffect(() => {
+        CatsPhotos();
+    }, [])
 
     const nextIndex = () => {
         setIndex((prev) => (prev + 1) % catArray.length);
@@ -27,9 +31,10 @@ const CatsSlider = () => {
 
     const printCards = catArray.length > 0
     ? Array.from({ length: 4 }, (_, i) => (
-        <div key={i}>
-            {catArray[(index + i) % catArray.length].id}
-        </div>
+       <>
+            <CatCard  id={catArray[(index + i) % catArray.length].id}
+             url={catArray[(index + i) % catArray.length].url}/>
+       </>
     ) ) : [];
 
 
