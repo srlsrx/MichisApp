@@ -1,33 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react';
+import catService from '../../services/catServices';
+
+
 
 const CatsSlider = () => {
     const [index, setIndex] = useState(0);
+    const [catArray, setCatArray] = useState([]);
 
-
-    const catArray =["cat1", "cat2", "cat3", "cat4", "cat5", "cat6", "cat7", "cat8", "cat9", "cat10", "cat11", "cat12"];
+    async function CatsPhotos() {
+        try {
+            const data = await catService();
+            setCatArray(data);
+        } catch (error) {
+            console.error("Error en CatCard:", error);
+        }
+    }
+    
 
     const nextIndex = () => {
-        setIndex((prev) => {
-            if(prev === catArray.length -1) {
-                prev = 0;
-            } else {
-                prev +1;
-            }            
-        })
+        setIndex((prev) => (prev + 1) % catArray.length);
     }
 
     const prevIndex =() => {
-        setIndex(() => {
-            if(prev === 0) {
-                prev = catArray.length -1;
-            } else {
-                prev -1;
-            }
-        })
+        setIndex((prev) => (prev - 1 + catArray.length) % catArray.length);
     }
 
     const printCards = catArray.length > 0
-    ? Array.from({ length: 4 }, (_, i) => catArray[(index + i) % catArray.length]) : [];
+    ? Array.from({ length: 4 }, (_, i) => (
+        <div key={i}>
+            {catArray[(index + i) % catArray.length].id}
+        </div>
+    ) ) : [];
+
+
  
   return (
     <div className="slider-container">
@@ -35,7 +40,7 @@ const CatsSlider = () => {
         {"<"}
       </button>
       <div className="card-container">
-        {slider}
+        {printCards}
       </div>
       <button className="nav-button next" onClick={nextIndex}>
         {">"}
