@@ -1,12 +1,18 @@
-import { useState } from 'react'
+/** 
+ * Route asocia una URL con cada componente 
+ * @async
+ * @returns
+ * @author {Nico Fernández}
+ */
+
+
 import {Routes, Route, Navigate} from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Adopt from './pages/Adopt/Adopt'
 import './App.css'
 
 
-function App() {
-  const [count, setCount] = useState(0)
+function App() { 
 
   return (
     <>
