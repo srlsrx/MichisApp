@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button/Button';
 
 /** 
  * configuramos la card y le damos estilos
@@ -13,7 +14,7 @@ const CatCard = ({id, url}) => {
         <img className="w-full h-55 object-cover" src={url} alt="Gatito en adopción"/>
         <div className="card-body p-4 text-center">
             <p className="text-gray-700 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae ullamcorper sapien.</p>
-            <button className="mt-4 bg-[#e25f23] text-white px-4 py-2 mb-8 rounded-full shadow-md hover:bg-blue-600 transition`">Adoptame</button>
+            <Button  />
         </div>
     </article>
   )
