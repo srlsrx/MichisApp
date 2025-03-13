@@ -19,7 +19,7 @@ import constructionAnimation from "../../assets/construction-animation.json";
  */
 const Adopt = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen text-center bg-gray-100 w-full overflow-hidden">
+    <div className="flex flex-col items-center justify-center h-[calc(100vh-190px)] text-center bg-gray-100 px-6 w-full overflow-hidden">
       <Lottie animationData={constructionAnimation} className="w-[600px] mb-[-90px] mt-[-100px]" />
       <h1 className="text-[30px] font-bold text-[#317298] md:text-5xl lg:text-7xl">Página en Construcción</h1>
       <p className="text-xl mt-0 text-gray-700 max-w-[600px] md:text-3xl lg:text-4xl lg:mt-4">
