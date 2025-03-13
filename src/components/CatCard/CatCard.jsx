@@ -1,11 +1,11 @@
+import React from 'react';
+
 /** 
  * configuramos la card y le damos estilos
  * @async
  * @returns
- * @author {Nico Fernández}
+ * @author {Ana Castro}
  */
-
-import React from 'react';
 
 const CatCard = ({id, url}) => {
   return (

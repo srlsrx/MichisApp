@@ -1,0 +1,19 @@
+.nav-button {
+    display: flex;
+    width: 3rem;
+    height: 3rem;   
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .nav-button:hover {
+    background-color: #e25f23;
+  }
