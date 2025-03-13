@@ -15,6 +15,7 @@ import './CatsSlider.css'
 const CatsSlider = () => {
     const [index, setIndex] = useState(0);
     const [catArray, setCatArray] = useState([]);
+    const [howManyCards, setHowManyCards] = useState(4);
 
     async function CatsPhotos() {
         try {
@@ -37,14 +38,25 @@ const CatsSlider = () => {
         setIndex((prev) => (prev - 1 + catArray.length) % catArray.length);
     }
 
+    const ChangeManyCard = () => {
+        const width = window.innerWidth;
+
+        if(width > 600) setHowManyCards(1);       
+        if(width > 900) setHowManyCards(2);
+        if(width > 1200) setHowManyCards(3);
+        // else setHowManyCards(4);
+    }
+
     const printCards = catArray.length > 0
-    ? Array.from({ length: 4 }, (_, i) => (
+    ? Array.from({ howManyCards }, (_, i) => (
        <>
             <CatCard  id={catArray[(index + i) % catArray.length].id}
              key={catArray[(index + i) % catArray.length].id}
              url={catArray[(index + i) % catArray.length].url}/>
        </>
     ) ) : [];
+
+    
  
   return (
     <div className="slider-container flex justify-center items-center h-screen gap-2 overflow-hidden">
