@@ -52,7 +52,7 @@ const CatsSlider = () => {
   return (
     <div className="slider-container flex justify-center items-center h-screen gap-2 overflow-hidden">
       <button
-        className="nav-button prev absolute top-[50%] left-40 bg-[#e25f23] text-white px-4 py-2 rounded-full shadow-md hover:bg-gray-900 transition"
+        className="nav-button prev top-[50%] left-40 bg-[#e25f23] text-white px-4 py-2 rounded-full shadow-md hover:bg-gray-900 transition"
         onClick={prevIndex}
       >
         <TbPlayerTrackPrev />
@@ -61,7 +61,7 @@ const CatsSlider = () => {
         {printCards}
       </div>
       <button
-        className="nav-button next absolute top-[50%] right-40 bg-[#e25f23] text-white px-4 py-2 rounded-full shadow-md hover:bg-gray-900 transition"
+        className="nav-button nexttop-[50%] right-40 bg-[#e25f23] text-white px-4 py-2 rounded-full shadow-md hover:bg-gray-900 transition"
         onClick={nextIndex}
       >
         <TbPlayerTrackNext />
