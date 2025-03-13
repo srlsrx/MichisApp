@@ -1,4 +1,8 @@
+import { Route, Routes, Navigate } from 'react-router-dom'
+import  Home  from './pages/Home/Home'
+import  Adopt  from './pages/Adopt/Adopt'
 import './App.css'
+
 
 function App() { 
 
