@@ -26,22 +26,20 @@ import './App.css';
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen w-full">
+    <>
       <Header />
       
       {/* Contenido principal con altura dinámica y asegure scroll sin afectar footer */}
-      <div className="l">
-        <main className="flex-1 h[100%] w-full">
+      <main className="flex flex-col justify-center min-h-[calc(100vh-190px)]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/adopt" element={<Adopt />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
-        </main>
-      </div>
+      </main>
       
       <Footer />
-    </div>
+    </>
   )
 }
 

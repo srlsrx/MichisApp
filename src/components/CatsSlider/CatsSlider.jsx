@@ -64,7 +64,7 @@ const CatsSlider = () => {
 
  
   return (
-    <div className="slider-container flex justify-center items-center h-screen gap-2 overflow-hidden">
+    <div className="slider-container flex justify-center items-center gap-2">
       <button className="nav-button prev top-[50%] left-40 bg-[#e25f23] text-white px-4 py-2 rounded-full shadow-md hover:bg-gray-900 transition" onClick={prevIndex}>
         <TbPlayerTrackPrev />
       </button>
