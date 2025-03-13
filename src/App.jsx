@@ -9,6 +9,7 @@
  */
 
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Adopt from './pages/Adopt/Adopt';
@@ -23,17 +24,24 @@ import './App.css';
  * @author {Ana Castro}
  */
 
-function App() { 
-
+function App() {
   return (
-    <>
-        <Header />
-        <Routes>
-            <Route path="/" element = {<Home />} />
-            <Route path="/adopt" element = {<Adopt />} />
-            <Route path="*" element = {< Navigate to = "/" />} />
-        </Routes>
-    </>
+    <div className="flex flex-col min-h-screen w-full">
+      <Header />
+      
+      {/* Contenido principal con altura dinámica y asegure scroll sin afectar footer */}
+      <div className="l">
+        <main className="flex-1 h[100%] w-full">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/adopt" element={<Adopt />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </main>
+      </div>
+      
+      <Footer />
+    </div>
   )
 }
 
