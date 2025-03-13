@@ -2,6 +2,21 @@ import React from "react";
 import Lottie from "lottie-react";
 import constructionAnimation from "../../assets/construction-animation.json";
 
+/**
+ * Componente `Adopt`
+ *
+ * Este componente muestra una página de "En Construcción" con una animación de Lottie
+ * y un mensaje informativo.
+ *
+ * @author Nico Fernández
+ * @component
+ * @example
+ * return (
+ *   <Adopt />
+ * )
+ *
+ * @returns {JSX.Element} Interfaz de usuario con animación y mensaje de construcción.
+ */
 const Adopt = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen text-center bg-gray-100 w-full overflow-hidden">
