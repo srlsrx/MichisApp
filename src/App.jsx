@@ -30,7 +30,7 @@ function App() {
       <Header />
       
       {/* Contenido principal con altura dinámica y asegure scroll sin afectar footer */}
-      <main className="flex flex-col justify-center min-h-[calc(100vh-190px)]">
+      <main className="flex px-2 flex-col justify-center min-h-[calc(100vh-190px)]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/adopt" element={<Adopt />} />
