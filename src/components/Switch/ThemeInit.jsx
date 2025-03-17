@@ -1,28 +1,15 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import ThemeContext from "../../contexts/ThemeContext";
 import SwitchToggle from "./Switch";
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    const main = document.querySelector("main");
-    if (main) {
-      main.setAttribute("data-theme", theme);
-    }
-    localStorage.setItem("theme", theme);
-  }, [theme]); // Se ejecuta cuando `theme` cambia
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
-  };
-
-  return(
+  return (
     <div className="flex items-center gap-2">
-        <span className="text-gray-500 dark:text-gray-400">☀️</span>
-    <SwitchToggle onChange={toggleTheme} checked={theme === "dark"} />
-    <span className="text-gray-500 dark:text-gray-400">🌙</span>
+      <SwitchToggle onChange={toggleTheme} checked={theme === "dark"} />
     </div>
-  )
+  );
 };
 
 export default ThemeToggle;
