@@ -1,5 +1,5 @@
 import axios from "axios";
-const hola = 1;
+
 
 /**
  * Consulta a la API de CatApi y devuelve un array de imagenes de gatos

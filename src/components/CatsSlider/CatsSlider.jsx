@@ -63,7 +63,7 @@ const CatsSlider = () => {
                     description = {catArray[(index + i) % catArray.length].breeds[0].description.slice(0, 150) + "..."}
                     />                    
           
-    ) ) : [null];
+    ) ) : [];
 
  
   return (
