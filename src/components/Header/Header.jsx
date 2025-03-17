@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import logo from '/images/paws&claws-logo.png';
+import ThemeToggle from '../Switch/ThemeInit';
 
 /**
  * Componente Header que muestra una barra de navegación estilizada y controla la visibilidad del Sidebar.
@@ -49,7 +50,7 @@ function Header() {
             <i className="bi bi-heart-fill"></i> Adopta
           </Link>
         </nav>
-
+        <ThemeToggle/>
         <button
           className="text-white text-2xl md:hidden"
           onClick={() => setSidebarOpen(!isSidebarOpen)}
