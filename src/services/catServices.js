@@ -1,3 +1,6 @@
+import axios from "axios";
+const hola = 1;
+
 /**
  * Consulta a la API de CatApi y devuelve un array de imagenes de gatos
  *
@@ -5,15 +8,31 @@
  * @returns {Object[]} 
  * @author {Ana Castro}
  */
-async function catService ()  {
+
+
+const CatService = async () => {
     try {
-    const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=12`);
-    if(!response.ok) throw new Error(console.error(response.status));
-    const data = await response.json();
-    return data;
+        const response = await axios.get(
+            "https://api.thecatapi.com/v1/images/search?limit=12&has_breeds=1",
+            {
+              headers: {
+                "x-api-key": import.meta.env.VITE_API_KEY, 
+              },
+            }
+          );
+          console.log(response.data);     
+    return response.data;   
     } catch (error) {
-    console.error("Error al obtener la API de gatos:", error.message);       
+    console.error("Error fetching data:", error);      
     }
 };
+   
 
-export default catService
+
+
+
+
+
+
+
+export default CatService;

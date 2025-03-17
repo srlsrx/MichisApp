@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TbPlayerTrackPrev, TbPlayerTrackNext } from "react-icons/tb";
-import catService from "../../services/catServices";
+import CatService from "../../services/catServices";
 import CatCard from "../CatCard/CatCard";
 import "./CatsSlider.css";
 
@@ -19,7 +19,7 @@ const CatsSlider = () => {
 
   async function CatsPhotos() {
     try {
-      const data = await catService();
+      const data = await CatService();
       setCatArray(data);
     } catch (error) {
       console.error("Error en CatCard:", error);
@@ -55,12 +55,15 @@ const CatsSlider = () => {
 
         const printCards = catArray.length > 0
         ? Array.from({ length: howManyCards }, (_, i) => (
-            <>
+           
                 <CatCard  id={catArray[(index + i) % catArray.length].id}
                     key={catArray[(index + i) % catArray.length].id}
-                    url={catArray[(index + i) % catArray.length].url}/>
-            </>
-    ) ) : [setHowManyCards];
+                    url={catArray[(index + i) % catArray.length].url}
+                    breeds={catArray[(index + i) % catArray.length].breeds[0].name}   
+                    description = {catArray[(index + i) % catArray.length].breeds[0].description.slice(0, 150) + "..."}
+                    />                    
+          
+    ) ) : [null];
 
  
   return (
@@ -68,7 +71,7 @@ const CatsSlider = () => {
       <button className="nav-button cursor-pointer prev md:ml-6 bg-gray-100 hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={prevIndex}>
         <TbPlayerTrackPrev />
       </button>
-      <div className="card-container flex gap-6 overflow-x-auto px-3 py-6 h-100 box-content mx-[-10px]">
+      <div className="flex gap-6 overflow-x-auto px-3 py-6 min-h-80 mx-[-10px]">
         {printCards}
       </div>
       <button className="nav-button cursor-pointer prev md:mr-6 bg-gray-100 hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={nextIndex}>
