@@ -16,7 +16,7 @@
  */
 function Footer() {
     return (
-      <footer className="w-full flex flex-col items-center justify-center py-6 bg-gradient-to-r from-teal-500 to-green-500 text-white text-sm shadow-md">
+      <footer className="w-full flex flex-col items-center justify-center py-6 bg-gradient-to-r from-teal-500 to-green-500 dark:text-gray-900 text-white text-sm shadow-md">
         <p>&copy; {new Date().getFullYear()} Factoria F5. Todos los derechos reservados.</p>
         <p className="mt-1">Creado por: <span className="font-semibold">Nico Fernández, Ana Castro y Ángel Aragón</span></p>
       </footer>

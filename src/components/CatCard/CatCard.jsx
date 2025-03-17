@@ -10,10 +10,10 @@ import Button from '../Button/Button';
 
 const CatCard = ({id, url}) => {
   return (
-    <article className="card-container shadow-lg shadow-blue-500/40 ring-2 ring-green-400/20 rounded-2xl overflow-hidden w-80 h-[100%] transform transition duration-300 hover:scale-105" id={id}>
+    <article className="card-container shadow-lg shadow-blue-500/40 dark:shadow-green-300/40 ring-2 ring-green-400/20 rounded-2xl overflow-hidden w-80 h-[100%] transform transition duration-300 hover:scale-105" id={id}>
         <img className="w-full h-55 object-cover" src={url} alt="Gatito en adopción"/>
-        <div className="card-body p-4 text-center bg-gray-200 ">
-            <p className="text-gray-700 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae ullamcorper sapien.</p>
+        <div className="card-body p-4 text-center dark:bg-gray-800 bg-gray-200 ">
+            <p className="text-gray-700 dark:text-gray-200 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae ullamcorper sapien.</p>
             <Button  />
         </div>
     </article>

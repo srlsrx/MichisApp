@@ -65,13 +65,13 @@ const CatsSlider = () => {
  
   return (
     <div className="slider-container flex justify-around items-center gap-2 box-content">
-      <button className="nav-button cursor-pointer prev md:ml-6 bg-gray-100 hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={prevIndex}>
+      <button className="nav-button cursor-pointer prev md:ml-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={prevIndex}>
         <TbPlayerTrackPrev />
       </button>
       <div className="card-container flex gap-6 overflow-x-auto px-3 py-6 h-100 box-content mx-[-10px]">
         {printCards}
       </div>
-      <button className="nav-button cursor-pointer prev md:mr-6 bg-gray-100 hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={nextIndex}>
+      <button className="nav-button cursor-pointer prev md:mr-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={nextIndex}>
         <TbPlayerTrackNext />
       </button>
     </div>
