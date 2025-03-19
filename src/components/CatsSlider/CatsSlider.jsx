@@ -71,7 +71,7 @@ const CatsSlider = () => {
       <button className="nav-button cursor-pointer prev md:ml-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={prevIndex}>
         <TbPlayerTrackPrev />
       </button>
-      <div className="flex gap-6 overflow-x-auto px-3 py-6 min-h-80 mx-[-10px]">
+      <div className="flex gap-6 overflow-x-auto px-3 py-8 min-h-80 mx-[-10px]">
         {printCards}
       </div>
       <button className="nav-button cursor-pointer prev md:mr-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={nextIndex}>
