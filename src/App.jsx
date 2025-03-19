@@ -30,7 +30,7 @@ function App() {
   return (
     <ThemeProvider>
       <Header />
-      <main className="flex px-2 flex-col bg-gray-100 dark:bg-gray-900 justify-center min-h-[calc(100vh-190px)]" data-theme="">
+      <main className="flex px-2 flex-col bg-gray-100 dark:bg-gray-900 justify-center min-h-[calc(100vh-190px)] py-6" data-theme="">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/adopt" element={<Adopt />} />
