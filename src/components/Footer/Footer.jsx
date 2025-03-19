@@ -7,7 +7,8 @@
  * @module Footer
  * @author Ángel
  */
-
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 /**
  * Componente Footer que muestra la información de derechos de autor.
  * 
@@ -15,10 +16,11 @@
  * @returns {JSX.Element} El componente Footer renderizado.
  */
 function Footer() {
+  const { t } = useTranslation();
     return (
       <footer className="w-full flex flex-col items-center justify-center py-6 bg-gradient-to-r from-teal-500 to-green-500 dark:text-gray-900 text-white text-sm shadow-md">
-        <p>&copy; {new Date().getFullYear()} Factoria F5. Todos los derechos reservados.</p>
-        <p className="mt-1">Creado por: <span className="font-semibold">Nico Fernández, Ana Castro y Ángel Aragón</span></p>
+        <p>&copy; {new Date().getFullYear()}{t("copy")}</p>
+        <p className="mt-1">{t("created_by")} <span className="font-semibold">Nico Fernández, Ana Castro & Ángel Aragón</span></p>
       </footer>
     );
   }

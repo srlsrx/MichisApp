@@ -13,6 +13,8 @@ import { Link, useLocation } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import logo from '/images/paws&claws-logo.png';
 import ThemeToggle from '../Switch/ThemeInit';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 /**
  * Componente Header que muestra una barra de navegación estilizada y controla la visibilidad del Sidebar.
@@ -23,6 +25,7 @@ import ThemeToggle from '../Switch/ThemeInit';
 function Header() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -47,10 +50,11 @@ function Header() {
               location.pathname === '/adopt' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-gray-900'
             }`}
           >
-            <i className="bi bi-heart-fill"></i> Adopta
+            <i className="bi bi-heart-fill"></i> {t("adopt")}
           </Link>
         </nav>
         <ThemeToggle/>
+        <LanguageSwitcher/>
         <button
           className="text-white text-2xl md:hidden"
           onClick={() => setSidebarOpen(!isSidebarOpen)}
