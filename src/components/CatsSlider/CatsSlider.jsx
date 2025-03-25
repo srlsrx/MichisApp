@@ -19,6 +19,7 @@ const CatsSlider = () => {
     const [howManyCards, setHowManyCards] = useState(4)
     const [direction, setDirection] = useState(1);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [selectedCat, setSelectedCat] = useState(null);
 
     async function CatsPhotos() {
         try {
@@ -36,7 +37,7 @@ const CatsSlider = () => {
     const nextIndex = () => {
         if (isAnimating) return;
         setIsAnimating(true);
-        setDirection(1); 
+        setDirection(1);
 
         setTimeout(() => {
             setIndex((prev) => (prev + howManyCards) % catArray.length);
@@ -47,7 +48,7 @@ const CatsSlider = () => {
     const prevIndex = () => {
         if (isAnimating) return;
         setIsAnimating(true);
-        setDirection(-1); 
+        setDirection(-1);
 
         setTimeout(() => {
             setIndex((prev) => (prev - howManyCards + catArray.length) % catArray.length);
@@ -70,11 +71,11 @@ const CatsSlider = () => {
     }, []);
 
     return (
-        <div className="slider-container flex justify-around items-center gap-2 box-content">
+        <div className="w-[100%] h-auto slider-container flex justify-center items-center gap-2 box-content">
             <button className="nav-button cursor-pointer prev md:ml-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={prevIndex}>
                 <TbPlayerTrackPrev />
             </button>
-            <div className="flex gap-6 overflow-hidden px-3 py-8 transition duration-300 min-h-80 mx-[-10px]">
+            <div className="w-[100%] p-2 justify-center flex transition overflow-hidden duration-300 mx-[-10px]">
                 <AnimatePresence mode="popLayout">
                     <motion.div
                         key={index}
@@ -88,15 +89,18 @@ const CatsSlider = () => {
                             Array.from({ length: howManyCards }, (_, i) => {
                                 const cardIndex = (index + i) % catArray.length;
                                 return (
-                                    <div key={catArray[cardIndex].id} className="w-1/4 flex justify-center items-center">
+                                    // <div  className="max-h-120 max-w-70  flex">
                                         <CatCard
+                                            key={catArray[cardIndex].id}
+                                            action={() => setSelectedCat(catArray[cardIndex])}
+                                            product={catArray[cardIndex]}
                                             id={catArray[cardIndex].id}
                                             url={catArray[cardIndex].url}
                                             breeds={catArray[cardIndex].breeds[0].name}
                                             description={
                                                 catArray[cardIndex].breeds[0].description.slice(0, 150) + "..."}
                                         />
-                                    </div>
+                                    // </div>
                                 );
                             })}
                     </motion.div>

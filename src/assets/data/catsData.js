@@ -1,0 +1,35 @@
+const gatos = [
+    { nombre: "Misi", edad: "2 años", vacunas: true, caracter: "Juguetón y cariñoso" },
+    { nombre: "Luna", edad: "1 año", vacunas: false, caracter: "Tranquila y mimosa" },
+    { nombre: "Toby", edad: "3 años", vacunas: true, caracter: "Sociable y curioso" },
+    { nombre: "Nala", edad: "6 meses", vacunas: true, caracter: "Tímida pero dulce" },
+    { nombre: "Simba", edad: "4 años", vacunas: false, caracter: "Activo y juguetón" },
+    { nombre: "Cleo", edad: "1 año y medio", vacunas: true, caracter: "Dormilona y tierna" },
+    { nombre: "Gizmo", edad: "5 años", vacunas: true, caracter: "Independiente y tranquilo" },
+    { nombre: "Milo", edad: "8 meses", vacunas: false, caracter: "Travieso y divertido" },
+    { nombre: "Sasha", edad: "2 años", vacunas: true, caracter: "Muy cariñosa" },
+    { nombre: "Bimba", edad: "3 años", vacunas: false, caracter: "Miedosa pero adorable" },
+    { nombre: "Thor", edad: "7 años", vacunas: true, caracter: "Muy protector y noble" },
+    { nombre: "Lolo", edad: "1 año", vacunas: true, caracter: "Juguetón sin parar" },
+    { nombre: "Arya", edad: "6 años", vacunas: true, caracter: "Curiosa y lista" },
+    { nombre: "Kiara", edad: "4 años", vacunas: false, caracter: "Dulce y tranquila" },
+    { nombre: "Rayo", edad: "2 años", vacunas: true, caracter: "Activo y escurridizo" },
+    { nombre: "Pelusa", edad: "9 meses", vacunas: false, caracter: "Achuchable y simpático" },
+    { nombre: "Mochi", edad: "3 años", vacunas: true, caracter: "Callado pero tierno" },
+    { nombre: "Chispa", edad: "1 año", vacunas: true, caracter: "Travieso y curioso" },
+    { nombre: "Gala", edad: "2 años", vacunas: false, caracter: "Tranquila y mimosa" },
+    { nombre: "Tigre", edad: "5 años", vacunas: true, caracter: "Observador y serio" },
+    { nombre: "Duna", edad: "2 años", vacunas: true, caracter: "Le encanta estar acompañada" },
+    { nombre: "Coco", edad: "1 año", vacunas: false, caracter: "Sociable y alegre" },
+    { nombre: "Leo", edad: "3 años", vacunas: true, caracter: "Muy juguetón con niños" },
+    { nombre: "Nube", edad: "10 meses", vacunas: false, caracter: "Suave y calladita" },
+    { nombre: "Pumba", edad: "6 años", vacunas: true, caracter: "Dormilón y bonachón" },
+    { nombre: "Mimi", edad: "2 años", vacunas: true, caracter: "Pequeñita y adorable" },
+    { nombre: "Rocky", edad: "4 años", vacunas: false, caracter: "Muy activo y cariñoso" },
+    { nombre: "Pantera", edad: "7 años", vacunas: true, caracter: "Elegante y tranquilo" },
+    { nombre: "Lily", edad: "8 meses", vacunas: false, caracter: "Juguetona y simpática" },
+    { nombre: "Bubu", edad: "2 años", vacunas: true, caracter: "Tímido pero fiel" }
+  ];
+  
+  export default gatos;
+  

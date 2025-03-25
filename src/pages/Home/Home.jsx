@@ -3,10 +3,8 @@ import CatsSlider from '../../components/CatsSlider/CatsSlider'
 
 
 const Home = () => {
-  return (
-    <>
-    <CatsSlider />
-    </>
+  return (    
+    <CatsSlider />    
   )
 }
 
