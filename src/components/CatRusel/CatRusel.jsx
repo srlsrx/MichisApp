@@ -16,7 +16,7 @@ import "./CatRusel.css";
 const CatRusel = () => {
     const [index, setIndex] = useState(0);
     const [catArray, setCatArray] = useState([]);
-    const [howManyCards, setHowManyCards] = useState(4)
+    const [printCardsResolution, setPrintCardsResolution] = useState(4)
     const [direction, setDirection] = useState(1);
     const [isAnimating, setIsAnimating] = useState(false);
     const [selectedCat, setSelectedCat] = useState(null);
@@ -40,7 +40,7 @@ const CatRusel = () => {
         setDirection(1);
 
         setTimeout(() => {
-            setIndex((prev) => (prev + howManyCards) % catArray.length);
+            setIndex((prev) => (prev + printCardsResolution) % catArray.length);
             setIsAnimating(false);
         }, 100);
     };
@@ -51,34 +51,40 @@ const CatRusel = () => {
         setDirection(-1);
 
         setTimeout(() => {
-            setIndex((prev) => (prev - howManyCards + catArray.length) % catArray.length);
+            setIndex((prev) => (prev - printCardsResolution + catArray.length) % catArray.length);
             setIsAnimating(false);
         }, 100);
     };
 
     useEffect(() => {
-        const changeManyCards = () => {
+        const printCardsResolution = () => {
+            console.log("Evento resize activado. Ancho:", window.innerWidth);
             const width = window.innerWidth;
-            if (width < 500) setHowManyCards(1);
-            else if (width < 900) setHowManyCards(2);
-            else if (width < 1000) setHowManyCards(3);
-            else setHowManyCards(4)
+            let newCount;
+
+            if (width < 700) newCount = 1;
+            else if (width < 1000) newCount = 2;
+            else if (width < 1200) newCount = 3;
+            else newCount = 4;
+
+            console.log("Nuevo número de tarjetas:", newCount);
+            setPrintCardsResolution(newCount);
         }
 
-        changeManyCards();
-        window.addEventListener("resize", changeManyCards);
-        return () => window.removeEventListener("resize", changeManyCards);
+        printCardsResolution();
+        window.addEventListener("resize", printCardsResolution);
+        return () => window.removeEventListener("resize", printCardsResolution);
     }, []);
 
     return (
-        <div className="w-[100%] xl:w-[100%] 2xl:w-[80%] h-auto slider-container flex justify-center items-center box-content">
-            <button className="nav-button cursor-pointer prev md:ml-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-11 transition" onClick={prevIndex}>
+        <div className="w-[100%] slider-container flex justify-center items-center box-content">
+            <button className="nav-button cursor-pointer prev md:ml-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={prevIndex}>
                 <TbPlayerTrackPrev />
             </button>
-            <div className="w-[100%] justify-center flex transition overflow-hidden duration-300 mx-[-10px]">
+            <div className="p-4 w-[80%] grid justify-items-center grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))]">
                 <AnimatePresence mode="popLayout">
                     <motion.div
-                        key={index}
+                        key={`${index}-${printCardsResolution}`}
                         initial={{ x: direction * 100 + "%", opacity: 0 }}
                         animate={{ x: "0%", opacity: 1 }}
                         exit={{ x: -direction * 100 + "%", opacity: 0 }}
@@ -86,27 +92,25 @@ const CatRusel = () => {
                         className="flex gap-6 px-3 py-6 min-h-80 justify-center"
                     >
                         {catArray.length > 0 &&
-                            Array.from({ length: howManyCards }, (_, i) => {
+                            Array.from({ length: printCardsResolution }, (_, i) => {
                                 const cardIndex = (index + i) % catArray.length;
                                 return (
-                                    // <div  className="max-h-120 max-w-70  flex">
-                                        <CatCard
-                                            key={catArray[cardIndex].id}
-                                            action={() => setSelectedCat(catArray[cardIndex])}
-                                            product={catArray[cardIndex]}
-                                            id={catArray[cardIndex].id}
-                                            url={catArray[cardIndex].url}
-                                            breeds={catArray[cardIndex].breeds[0].name}
-                                            description={
-                                                catArray[cardIndex].breeds[0].description.slice(0, 150) + "..."}
-                                        />
-                                    // </div>
+                                    <CatCard
+                                        key={catArray[cardIndex].id}
+                                        action={() => setSelectedCat(catArray[cardIndex])}
+                                        product={catArray[cardIndex]}
+                                        id={catArray[cardIndex].id}
+                                        url={catArray[cardIndex].url}
+                                        breeds={catArray[cardIndex].breeds[0].name}
+                                        description={
+                                            catArray[cardIndex].breeds[0].description.slice(0, 150) + "..."}
+                                    />
                                 );
                             })}
                     </motion.div>
                 </AnimatePresence>
             </div>
-            <button className="nav-button cursor-pointer prev md:mr-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-11 transition" onClick={nextIndex}>
+            <button className="nav-button cursor-pointer prev md:mr-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={nextIndex}>
                 <TbPlayerTrackNext />
             </button>
         </div>
