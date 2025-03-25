@@ -18,6 +18,7 @@ import ThemeToggle from './components/Switch/ThemeInit';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Favorites from './pages/Favorites/Favorites';
 import { FavoritesProvider } from './contexts/FavoritesContext';
+import { HomeProvider } from './contexts/HomeContext';
 
 /**
  * Componente App que renderiza el diseño principal y usa `Routes` para el path de la app.
@@ -30,20 +31,22 @@ import { FavoritesProvider } from './contexts/FavoritesContext';
 
 function App() {
   return (
-    <FavoritesProvider>
-        <ThemeProvider>
-            <Header />
-            <main className="flex px-2 flex-col bg-gray-100 items-center dark:bg-gray-900 justify-center min-h-[calc(100vh-190px)] py-6" data-theme="">
-                <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/adopt" element={<Adopt />} />
-                <Route path="/fav" element={<Favorites />} />
-                <Route path="*" element={<Navigate to="/" />} />
-                </Routes>
-            </main>            
-            <Footer />
-        </ThemeProvider>
-    </FavoritesProvider>
+    <HomeProvider>
+        <FavoritesProvider>
+            <ThemeProvider>
+                <Header />
+                <main className="flex px-2 flex-col bg-gray-100 items-center dark:bg-gray-900 justify-center min-h-[calc(100vh-190px)] py-6" data-theme="">
+                    <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/adopt" element={<Adopt />} />
+                    <Route path="/fav" element={<Favorites />} />
+                    <Route path="*" element={<Navigate to="/" />} />
+                    </Routes>
+                </main>            
+                <Footer />
+            </ThemeProvider>
+        </FavoritesProvider>
+    </HomeProvider>
   )
 }
 

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { TbPlayerTrackPrev, TbPlayerTrackNext } from "react-icons/tb";
-import CatService from "../../services/catServices";
+import {useContext, useEffect, useState}  from "react";
+import {motion, AnimatePresence} from "framer-motion";
+import {TbPlayerTrackPrev, TbPlayerTrackNext } from "react-icons/tb";
 import CatCard from "../CatCard/CatCard";
+import {HomeContext} from "../../contexts/HomeContext";
 import "./CatRusel.css";
 
 /**
@@ -14,44 +14,32 @@ import "./CatRusel.css";
  */
 
 const CatRusel = () => {
-    const [index, setIndex] = useState(0);
-    const [catArray, setCatArray] = useState([]);
+    const [index, setIndex] = useState(0);    
     const [howManyCards, setHowManyCards] = useState(4)
     const [direction, setDirection] = useState(1);
     const [isAnimating, setIsAnimating] = useState(false);
     const [selectedCat, setSelectedCat] = useState(null);
+    const {homeList} = useContext(HomeContext);    
 
-    async function CatsPhotos() {
-        try {
-            const data = await CatService();
-            setCatArray(data);
-        } catch (error) {
-            console.error("Error en CatCard:", error);
-        }
-    }
-
-    useEffect(() => {
-        CatsPhotos();
-    }, []);
 
     const nextIndex = () => {
-        if (isAnimating) return;
+        if (isAnimating || homeList.length === 0) return;
         setIsAnimating(true);
         setDirection(1);
 
         setTimeout(() => {
-            setIndex((prev) => (prev + howManyCards) % catArray.length);
+            setIndex((prev) => (prev + howManyCards) % homeList.length);
             setIsAnimating(false);
         }, 100);
     };
 
     const prevIndex = () => {
-        if (isAnimating) return;
+        if (isAnimating || homeList.length === 0) return;
         setIsAnimating(true);
         setDirection(-1);
 
         setTimeout(() => {
-            setIndex((prev) => (prev - howManyCards + catArray.length) % catArray.length);
+            setIndex((prev) => (prev - howManyCards + homeList.length) % homeList.length);
             setIsAnimating(false);
         }, 100);
     };
@@ -78,27 +66,27 @@ const CatRusel = () => {
             <div className="w-[100%] justify-center flex transition overflow-hidden duration-300 mx-[-10px]">
                 <AnimatePresence mode="popLayout">
                     <motion.div
-                        key={index}
+                        key={homeList[index]?.id}
                         initial={{ x: direction * 100 + "%", opacity: 0 }}
                         animate={{ x: "0%", opacity: 1 }}
                         exit={{ x: -direction * 100 + "%", opacity: 0 }}
                         transition={{ duration: 0.8, ease: "easeInOut" }}
                         className="flex gap-6 px-3 py-6 min-h-80 justify-center"
                     >
-                        {catArray.length > 0 &&
+                        {homeList.length > 0 &&
                             Array.from({ length: howManyCards }, (_, i) => {
-                                const cardIndex = (index + i) % catArray.length;
+                                const cardIndex = (index + i) % homeList.length;
                                 return (
                                     // <div  className="max-h-120 max-w-70  flex">
                                         <CatCard
-                                            key={catArray[cardIndex].id}
-                                            action={() => setSelectedCat(catArray[cardIndex])}
-                                            product={catArray[cardIndex]}
-                                            id={catArray[cardIndex].id}
-                                            url={catArray[cardIndex].url}
-                                            breeds={catArray[cardIndex].breeds[0].name}
+                                            key={homeList[cardIndex].id}
+                                            action={() => setSelectedCat(homeList[cardIndex])}
+                                            product={homeList[cardIndex]}
+                                            id={homeList[cardIndex].id}
+                                            url={homeList[cardIndex].url}
+                                            breeds={homeList[cardIndex].breeds[0].name}
                                             description={
-                                                catArray[cardIndex].breeds[0].description.slice(0, 150) + "..."}
+                                                homeList[cardIndex].breeds[0].description.slice(0, 150) + "..."}
                                         />
                                     // </div>
                                 );
