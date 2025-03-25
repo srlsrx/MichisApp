@@ -55,6 +55,14 @@ function Sidebar({ isOpen, toggleSidebar }) {
         >
           <i className="bi bi-heart-fill"></i> Adopta
         </Link>
+        <Link
+          to="/fav"
+          className={`relative flex items-center gap-2 px-4 py-2 rounded-md text-gray-300 transition-all duration-300 hover:bg-teal-500 hover:text-white ${
+            location.pathname === '/fav' ? 'bg-teal-500 text-white' : ''
+          }`}
+        >
+          <i className="bi bi-star-fill text-lg"></i> Favoritos
+        </Link>
       </nav>
     </aside>
   );

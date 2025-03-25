@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TbPlayerTrackPrev, TbPlayerTrackNext } from "react-icons/tb";
 import CatService from "../../services/catServices";
 import CatCard from "../CatCard/CatCard";
-import "./CatsSlider.css";
+import "./CatRusel.css";
 
 /**
  * Importamos los datos desde catService y la card desde
@@ -13,7 +13,7 @@ import "./CatsSlider.css";
  * @author {Ana Castro}
  */
 
-const CatsSlider = () => {
+const CatRusel = () => {
     const [index, setIndex] = useState(0);
     const [catArray, setCatArray] = useState([]);
     const [howManyCards, setHowManyCards] = useState(4)
@@ -42,7 +42,7 @@ const CatsSlider = () => {
         setTimeout(() => {
             setIndex((prev) => (prev + howManyCards) % catArray.length);
             setIsAnimating(false);
-        }, 500);
+        }, 100);
     };
 
     const prevIndex = () => {
@@ -53,7 +53,7 @@ const CatsSlider = () => {
         setTimeout(() => {
             setIndex((prev) => (prev - howManyCards + catArray.length) % catArray.length);
             setIsAnimating(false);
-        }, 500);
+        }, 100);
     };
 
     useEffect(() => {
@@ -71,11 +71,11 @@ const CatsSlider = () => {
     }, []);
 
     return (
-        <div className="w-[100%] h-auto slider-container flex justify-center items-center gap-2 box-content">
-            <button className="nav-button cursor-pointer prev md:ml-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={prevIndex}>
+        <div className="w-[100%] xl:w-[100%] 2xl:w-[80%] h-auto slider-container flex justify-center items-center box-content">
+            <button className="nav-button cursor-pointer prev md:ml-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-11 transition" onClick={prevIndex}>
                 <TbPlayerTrackPrev />
             </button>
-            <div className="w-[75%] p-2 justify-center flex transition overflow-hidden duration-300 mx-[-10px]">
+            <div className="w-[100%] justify-center flex transition overflow-hidden duration-300 mx-[-10px]">
                 <AnimatePresence mode="popLayout">
                     <motion.div
                         key={index}
@@ -106,11 +106,11 @@ const CatsSlider = () => {
                     </motion.div>
                 </AnimatePresence>
             </div>
-            <button className="nav-button cursor-pointer prev md:mr-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={nextIndex}>
+            <button className="nav-button cursor-pointer prev md:mr-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-11 transition" onClick={nextIndex}>
                 <TbPlayerTrackNext />
             </button>
         </div>
     );
 };
 
-export default CatsSlider;
+export default CatRusel;
