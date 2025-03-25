@@ -75,7 +75,7 @@ const CatsSlider = () => {
             <button className="nav-button cursor-pointer prev md:ml-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={prevIndex}>
                 <TbPlayerTrackPrev />
             </button>
-            <div className="w-[100%] p-2 justify-center flex transition overflow-hidden duration-300 mx-[-10px]">
+            <div className="w-[75%] p-2 justify-center flex transition overflow-hidden duration-300 mx-[-10px]">
                 <AnimatePresence mode="popLayout">
                     <motion.div
                         key={index}
