@@ -12,8 +12,7 @@ export const HomeProvider = ({ children }) => {
   const getHomeList = async () => {
     try {
       const data = await CatService();
-      dispatch({ type: "SET_HOME_LIST", payload: data });
-      console.log(data)
+      dispatch({ type: "SET_HOME_LIST", payload: data });     
     } catch (error) {
       console.error("Error al obtener los datos:", error);
     }

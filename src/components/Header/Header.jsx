@@ -55,7 +55,7 @@ function Header() {
                         className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/fav' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-gray-900'
                             }`}
                     >
-                        <i className="bi bi-star-fill text-lg"></i> Favorites
+                        <i className="bi bi-star-fill text-lg"></i> {t("favorites")}
                     </Link>
                 </nav>
                 <ThemeToggle />
@@ -64,7 +64,7 @@ function Header() {
                     className="text-white text-2xl md:hidden"
                     onClick={() => setSidebarOpen(!isSidebarOpen)}
                 >
-                    <i className="bi bi-list"></i>
+                    <i className="bi bi-list"></i> {t("Favotitos")}
                 </button>
             </header>
 
