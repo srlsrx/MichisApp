@@ -26,7 +26,6 @@ const CatService = async () => {
     console.error("Error fetching data:", error);      
     }
 };
-   
 
 
 
