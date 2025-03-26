@@ -28,7 +28,7 @@ const CatRusel = () => {
         setDirection(1);
 
         setTimeout(() => {
-            setIndex((prev) => (prev + printCardsResolution) % printCardsResolution.length);
+            setIndex((prev) => (prev + printCardsResolution) % homeList.length);
             setIsAnimating(false);
         }, 100);
     };
@@ -64,6 +64,9 @@ const CatRusel = () => {
         return () => window.removeEventListener("resize", printCardsResolution);
     }, []);
 
+    console.log("Lista de gatos:", homeList);
+    console.log("Índice actual:", index);
+
     return (
         <div className="w-[100%] slider-container flex justify-center items-center box-content">
             <button className="nav-button cursor-pointer prev md:ml-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md w-12 h-10 md:w-12 md:h-12 transition" onClick={prevIndex}>
@@ -72,7 +75,7 @@ const CatRusel = () => {
             <div className="p-4 w-[80%] grid justify-items-center grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))]">
                 <AnimatePresence mode="popLayout">
                     <motion.div
-                        key={homeList[index]?.id}
+                        key={`${index}-${printCardsResolution}`}
                         initial={{ x: direction * 100 + "%", opacity: 0 }}
                         animate={{ x: "0%", opacity: 1 }}
                         exit={{ x: -direction * 100 + "%", opacity: 0 }}
