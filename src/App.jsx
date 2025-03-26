@@ -19,6 +19,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import Favorites from './pages/Favorites/Favorites';
 import { FavoritesProvider } from './contexts/FavoritesContext';
 import { HomeProvider } from './contexts/HomeContext';
+import AboutUs from './pages/AboutUs/AboutUs';
 
 /**
  * Componente App que renderiza el diseño principal y usa `Routes` para el path de la app.
@@ -40,6 +41,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/adopt" element={<Adopt />} />
                     <Route path="/fav" element={<Favorites />} />
+                    <Route path='/about-us' element={<AboutUs/>}/>
                     <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
                 </main>            

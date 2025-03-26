@@ -57,14 +57,22 @@ function Header() {
                     >
                         <i className="bi bi-star-fill text-lg"></i> {t("favorites")}
                     </Link>
+                    <Link
+                        to="/about-us"
+                        className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/fav' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-gray-900'
+                            }`}
+                    >
+                        <i className="bi bi-person-fill text-lg"></i> {t("about_us")}
+                    </Link>
+                    <LanguageSwitcher />
                 </nav>
                 <ThemeToggle />
-                <LanguageSwitcher />
+                
                 <button
                     className="text-white text-2xl md:hidden"
                     onClick={() => setSidebarOpen(!isSidebarOpen)}
                 >
-                    <i className="bi bi-list"></i> {t("Favotitos")}
+                    <i className="bi bi-list"></i>
                 </button>
             </header>
 

@@ -10,7 +10,7 @@ function LanguageSwitcher() {
     };
 
     return (
-        <button onClick={changeLanguage} className="cursor-pointer px-2 py-2 text-4xl rounded-lg absolute top-7.5 right-23">
+        <button onClick={changeLanguage} className="cursor-pointer px-2 py-2 text-4xl rounded-lg absolute top-3.5 md:top-7.5 right-23">
             <Flag code={i18n.language === "es" ? "gb" : "es"} style={{ width: "30px", height: "20px" }} />
         </button>
     );
