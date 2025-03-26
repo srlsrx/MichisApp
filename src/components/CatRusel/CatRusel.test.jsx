@@ -2,7 +2,10 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { describe, it, vi, expect } from "vitest";
-import CatsSlider from "./CatsSlider";
+import CatRusel from "./CatRusel";
+import { HomeProvider } from "../../contexts/HomeContext";
+
+
 
 // Mock del componente CatCard
 vi.mock("../CatCard/CatCard", () => ({
@@ -35,9 +38,14 @@ vi.mock("../../services/catServices", () => ({
     ]),
 }));
 
-describe("CatsSlider", () => {
+describe("CatRusel", () => {
     it("renderiza correctamente las tarjetas de gatos", async () => {
-        render(<CatsSlider />);
+        render(
+            <HomeProvider>
+                <CatRusel />
+            </HomeProvider>
+            );
+
         await waitFor(() => {
             const cards = screen.getAllByTestId("mock-cat-card");
             expect(cards.length).toBeGreaterThan(0);

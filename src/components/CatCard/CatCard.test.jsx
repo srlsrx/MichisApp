@@ -2,7 +2,16 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { describe, vi, it, expect } from "vitest";
+import { MemoryRouter } from "react-router-dom";
 import CatCard from "./CatCard";
+import { FavoritesProvider } from "../../contexts/FavoritesContext";
+
+vi.mock("react-i18next", () => ({
+    useTranslation: () => ({
+        t: (key) => key, // Devuelve la clave sin traducir
+    }),
+}));
+
 
 describe("CatCard", () => {
     vi.mock("../Button/Button", () => ({
@@ -17,7 +26,12 @@ describe("CatCard", () => {
     };
 
     it("renderiza correctamente los datos del gato", () => {
-        render(<CatCard {...mockProps} />);
+        render(
+            <FavoritesProvider>
+            <MemoryRouter>        
+                <CatCard {...mockProps} />
+            </MemoryRouter>
+            </FavoritesProvider>);
 
         const image = screen.getByAltText("Gatito en adopción");
         const breedText = screen.getByText(mockProps.breeds);

@@ -1,16 +1,18 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { describe, vi, it, expect } from "vitest";
+import { vi } from "vitest";
+import { describe, it, expect } from "vitest";
+
 import Button from "./Button";
 
-// Mock del hook useNavigate de react-router-dom
-vi.mock("react-router-dom", async () => {
-    const actual = await vi.importActual("react-router-dom");
-    return {
-        ...actual,
-        useNavigate: () => mockedNavigate,
-    };
-});
+// // Mock del hook useNavigate de react-router-dom
+// vi.mock("react-router-dom", async () => {
+//     const actual = await vi.importActual("react-router-dom");
+//     return {
+//         ...actual,
+//         useNavigate: () => mockedNavigate,
+//     };
+// });
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
@@ -18,13 +20,17 @@ vi.mock("react-i18next", () => ({
     }),
 }));
 
-const mockedNavigate = vi.fn();
+
+const handleClickMock = vi.fn();
 
 describe("Button component", () => {
-    it("navega a /Adopt cuando se hace click", () => {
-        render(<Button />, { wrapper: MemoryRouter });
-        const button = screen.getByRole("button");
+    it("ejecuta la función onClick cuando se hace click", () => {
+        const handleClickMock = vi.fn(); // Definimos el mock de la función
+        render(<Button text="Adopt" onClick={handleClickMock} />, { wrapper: MemoryRouter });
+
+        const button = screen.getByRole("button", { name: "Adopt" });
         fireEvent.click(button);
-        expect(mockedNavigate).toHaveBeenCalledWith("/Adopt");
+
+        expect(handleClickMock).toHaveBeenCalledTimes(1);
     });
 });
