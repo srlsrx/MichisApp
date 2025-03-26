@@ -1,34 +1,20 @@
-import React from "react";
-import Lottie from "lottie-react";
-import constructionAnimation from "../../assets/construction-animation.json";
-import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
+import AdoptForm from "../../components/AdoptForm/AdoptForm";
+import FormError from "../../components/FormError/FormError";
 
 /**
- * Componente `Adopt`
- *
- * Este componente muestra una página de "En Construcción" con una animación de Lottie
- * y un mensaje informativo.
- *
- * @author Nico Fernández
- * @component
- * @example
- * return (
- *   <Adopt />
- * )
- *
- * @returns {JSX.Element} Interfaz de usuario con animación y mensaje de construcción.
+ * Página de adopción que recibe el nombre del gato desde el estado
+ * y lo pasa al formulario de adopción como prop.
  */
-const Adopt = () => {
-  const { t } = useTranslation();
-  return (
-    <div className="flex flex-col items-center justify-center h-full text-center bg-transparent px-6 w-full">
-      <Lottie animationData={constructionAnimation} className="w-[380px] md:w-[550px] mb-[-50px]" />
-      <h1 className="text-[30px] font-bold text-[#44B8A7] md:text-5xl lg:text-7xl">{t("construction")}</h1>
-      <p className="text-xl mt-0 dark:text-gray-200 text-gray-700 max-w-[600px] md:text-3xl lg:text-4xl lg:mt-4">
-        {t("construction_text")}
-      </p>
-    </div>
-  );
-};
+function Adopt() {
+  const location = useLocation();
+  const catName = location.state?.catName;
+
+  if (!catName) {
+    return <FormError message="No se ha especificado ningún michi." />;
+  }
+
+  return <AdoptForm catName={catName} />;
+}
 
 export default Adopt;
