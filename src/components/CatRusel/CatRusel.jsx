@@ -3,6 +3,7 @@ import {motion, AnimatePresence} from "framer-motion";
 import {TbPlayerTrackPrev, TbPlayerTrackNext } from "react-icons/tb";
 import CatCard from "../CatCard/CatCard";
 import {HomeContext} from "../../contexts/HomeContext";
+import gatos from "../../assets/data/catsData";
 import "./CatRusel.css";
 
 /**
@@ -21,6 +22,18 @@ const CatRusel = () => {
     const [selectedCat, setSelectedCat] = useState(null);
     const {homeList} = useContext(HomeContext);    
 
+    useEffect(() => {
+        if (homeList.length > 0) {
+            const shuffled = gatos.sort(() => 0.5 - Math.random());
+            const enriched = homeList.map((cat, index) => ({
+                ...cat,
+                name: shuffled[index % gatos.length].nombre,
+                caracter: shuffled[index % gatos.length].caracter,
+            }));
+            setIndex(0); // reset carrusel index
+            homeList.splice(0, homeList.length, ...enriched); // muta directamente el contexto
+        }
+    }, [homeList]);
 
     const nextIndex = () => {
         if (isAnimating || homeList.length === 0) return;
@@ -91,6 +104,8 @@ const CatRusel = () => {
                                             breeds={homeList[cardIndex].breeds[0].name}
                                             description={
                                                 homeList[cardIndex].breeds[0].description.slice(0, 150) + "..."}
+                                            name={homeList[cardIndex].name}
+                                            caracter={homeList[cardIndex].caracter}
                                         />
                                     // </div>
                                 );

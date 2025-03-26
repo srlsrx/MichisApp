@@ -2,6 +2,7 @@
 import CatService from '../services/catServices';
 import { createContext, useReducer, useEffect } from 'react';
 import { homeReducer, initialState } from './HomeReducer';
+import gatos from '../assets/data/catsData'
 
 export const HomeContext = createContext();
 
@@ -12,7 +13,13 @@ export const HomeProvider = ({ children }) => {
   const getHomeList = async () => {
     try {
       const data = await CatService();
-      dispatch({ type: "SET_HOME_LIST", payload: data });     
+      const shuffled = gatos.sort(() => 0.5 - Math.random());
+      const enriched = data.map((cat, index) => ({
+        ...cat,
+        name: shuffled[index % gatos.length].nombre,
+        caracter: shuffled[index % gatos.length].caracter,
+      }));
+      dispatch({ type: "SET_HOME_LIST", payload: enriched });     
     } catch (error) {
       console.error("Error al obtener los datos:", error);
     }
