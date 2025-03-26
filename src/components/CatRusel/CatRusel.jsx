@@ -28,7 +28,7 @@ const CatRusel = () => {
             const enriched = homeList.map((cat, index) => ({
                 ...cat,
                 name: shuffled[index % gatos.length].nombre,
-                caracter: shuffled[index % gatos.length].caracter,
+                temperament: shuffled[index % gatos.length].temperament,
             }));
             setIndex(0); // reset carrusel index
             homeList.splice(0, homeList.length, ...enriched); // muta directamente el contexto
@@ -105,7 +105,7 @@ const CatRusel = () => {
                                             description={
                                                 homeList[cardIndex].breeds[0].description.slice(0, 150) + "..."}
                                             name={homeList[cardIndex].name}
-                                            caracter={homeList[cardIndex].caracter}
+                                            temperament={homeList[cardIndex].temperament}
                                         />
                                     // </div>
                                 );

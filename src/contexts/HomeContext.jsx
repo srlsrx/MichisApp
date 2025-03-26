@@ -17,7 +17,7 @@ export const HomeProvider = ({ children }) => {
       const enriched = data.map((cat, index) => ({
         ...cat,
         name: shuffled[index % gatos.length].nombre,
-        caracter: shuffled[index % gatos.length].caracter,
+        temperament: shuffled[index % gatos.length].temperament,
       }));
       dispatch({ type: "SET_HOME_LIST", payload: enriched });     
     } catch (error) {
