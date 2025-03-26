@@ -34,8 +34,7 @@ const CatCard = ({ id, url, product, breeds, description }) => {
       </p>
       <Button
         text={t("adopt_me")}
-        type="submit"
-        onClick={() => navigate("/adopt", { state: { breeds } })}
+        onClick={() => navigate("/adopt", { state: { catName: breeds } })}
       />
     </article>
   );
