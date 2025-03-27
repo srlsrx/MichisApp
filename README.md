@@ -1,83 +1,97 @@
-# 🐱 Michis App
+# 🐱 MichisApp
 
-Michis App es una aplicación web donde los usuarios pueden ver imágenes de gatos a través de un carrusel interactivo, con la posibilidad de explorar la sección de adopción (en construcción). Este proyecto sigue la metodología **Scrum** y se desarrolla como parte del bootcamp.
-
-## 🚀 Tecnologías utilizadas
-
-- **Frontend:** React, Tailwind CSS
-- **Backend:** No implementado (uso de API externa)
-- **Gestión de Estado:** useState
-- **Routing:** React Router
-- **Control de versiones:** Git y GitFlow
+**MichisApp** es una aplicación web moderna desarrollada con **React** y **Vite** que permite a los usuarios explorar, adoptar y gestionar sus gatos favoritos. Incluye un carrusel interactivo, formulario de adopción con validación, sistema de favoritos persistente y soporte para temas claro/oscuro e internacionalización.
 
 ---
 
-## 📌 Características principales
 
-✅ **Carrusel de imágenes de gatos:** Muestra imágenes obtenidas de una API externa.
-✅ **Diseño responsive:** Adaptado para móviles, tablets y escritorio.
-✅ **Página de adopción:** En construcción.
-✅ **Header y Footer:** Implementados con estilos modernos.
+## ✨Características
 
----
-
-## 📂 Estructura del Proyecto
-
-```
-📦 michis-app
-├── 📂 public         # Archivos estáticos
-├── 📂 src            # Código fuente
-│   ├── 📂 components # Componentes reutilizables
-│   ├── 📂 pages      # Páginas de la aplicación
-│   ├── 📂 services   # Servicios para consumo de APIs
-│   ├── App.jsx       # Configuración principal de la App
-│   └── main.jsx      # Punto de entrada principal
-├── .gitignore        # Archivos a ignorar por Git
-├── package.json      # Dependencias y configuración
-└── README.md         # Documentación del proyecto
-```
+- 🎠 **Carrusel de Gatos**: Navega entre adorables gatos en un carrusel dinámico.
+- 🐾 **Formulario de Adopción**: Envía solicitudes con validación y buena experiencia de usuario.
+- 💖 **Favoritos Persistentes**: Añade o elimina gatos favoritos, guardados en `localStorage`.
+- 🌗 **Modo Claro/Oscuro**: Interfaz adaptable según tus preferencias visuales.
+- 🌍 **Soporte Multilenguaje**: Disponible en español e inglés gracias a `react-i18next`.
+- 🎞️ **Animaciones Lottie**: Animaciones elegantes para páginas de error o en construcción.
 
 ---
 
-## ⚡ Instalación y Ejecución
+## 📁 Estructura del Proyecto
 
-### 1️⃣ Clonar el repositorio
 ```bash
-git clone https://github.com/srlsrx/MichisApp.git
-cd MichisApp
+MichisApp/
+├── public/             # Archivos estáticos
+│   └── images/         # Imágenes del proyecto
+├── src/                # Código fuente
+│   ├── components/     # Componentes reutilizables (Header, Footer, Modal, etc.)
+│   ├── contexts/       # Contextos globales (favoritos, tema, home)
+│   ├── locales/        # Archivos de traducción (i18n)
+│   ├── pages/          # Vistas principales (Home, Adopción)
+│   ├── services/       # Servicios externos (API)
+│   └── App.jsx         # Componente raíz y enrutamiento
+├── docs/               # Documentación JSDoc
+├── .env                # Variables de entorno
+├── package.json        # Dependencias y scripts
+└── vite.config.js      # Configuración del entorno Vite
 ```
-
-### 2️⃣ Instalar dependencias
-```bash
-npm install
-```
-
-### 3️⃣ Ejecutar la aplicación en modo desarrollo
-```bash
-npm run dev
-```
-
-La app estará disponible en `http://localhost:5173`.
-
 
 ---
 
-## 📌 Rutas Definidas
+## 🧩 Componentes Principales
 
-| Página         | Ruta          | Estado         |
-|---------------|--------------|---------------|
-| Home          | `/`          | ✅ Implementada |
-| Adopción      | `/adopcion`  | 🚧 En construcción |
-
- 
----
-
-## 📜 Licencia
-Este proyecto es de código abierto y se distribuye bajo la licencia MIT.
+| Componente     | Descripción                                                                 | Archivo                                                          |
+|----------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------|
+| **Header**     | Barra superior con navegación y botón para abrir el menú lateral            | `src/components/Header/Header.jsx`                               |
+| **Footer**     | Pie de página con créditos y enlaces                                        | `src/components/Footer/Footer.jsx`                               |
+| **CatCard**    | Tarjeta individual de gato con imagen, nombre y botones de interacción      | `src/components/CatCard/CatCard.jsx`                             |
+| **Modal**      | Componente genérico para mostrar contenido emergente                        | `src/components/Modal/Modal.jsx`                                 |
+| **AdoptForm**  | Formulario para gestionar solicitudes de adopción con validaciones          | `src/components/AdoptForm/AdoptForm.jsx`                         |
 
 ---
 
-🐾 Desarrollado por Nico Fernández, Ana Castro y Ángel Aragón.
+## 🌐 Contextos
 
-🐾 ¡Contribuciones y sugerencias son bienvenidas!
+| Contexto             | Descripción                                                                 | Archivo                                       |
+|----------------------|-----------------------------------------------------------------------------|-----------------------------------------------|
+| **FavoritesContext** | Gestiona la lógica de favoritos usando `useReducer` y `localStorage`        | `src/contexts/FavoritesContext.jsx`           |
+| **HomeContext**      | Proporciona la lista de gatos desde el API para la página principal         | `src/contexts/HomeContext.jsx`                |
+| **ThemeContext**     | Controla el cambio entre tema claro y oscuro                                | `src/contexts/ThemeContext.jsx`               |
+
+---
+
+## 🔧 Servicios
+
+| Servicio       | Descripción                                                           | Archivo                                  |
+|----------------|-----------------------------------------------------------------------|------------------------------------------|
+| **CatService** | Conecta con la Cat API para obtener imágenes de gatos aleatorios      | `src/services/catServices.js`            |
+
+---
+
+## 🌍 Internacionalización
+
+La aplicación está preparada para funcionar en varios idiomas utilizando `react-i18next`. Actualmente se incluyen los siguientes idiomas:
+
+- 🇪🇸 **Español** → [`es.json`](src/locales/es.json)
+- 🇬🇧 **Inglés** → [`en.json`](src/locales/en.json)
+
+Los textos se gestionan desde los archivos JSON en la carpeta `locales`.
+
+---
+
+## 👨‍💻 Autores
+
+Este proyecto ha sido desarrollado por estudiantes del bootcamp **Factoria F5**:
+
+- **Nico Fernández** 
+- **Ana Castro**
+- **Ángel Aragón**
+
+---
+
+## 📄 Licencia
+
+Este proyecto está protegido bajo la licencia de uso de **Factoria F5**.  
+Todos los derechos reservados © 2025.
+
+---
 
