@@ -3,19 +3,39 @@ import { FavoritesContext } from "../../contexts/FavoritesContext";
 import CatCard from "../CatCard/CatCard";
 import Modal from "../Modal/Modal";
 import CatDetails from "../CatDetails/CatDetails";
+import { useTranslation } from "react-i18next";
+import error from "../../assets/animations/error.json";
+import Lottie from "lottie-react";
+import FormError from "../FormError/FormError";
 
 /**
- * @component FavoritesGrid
- * @description Renderiza una cuadrícula de tarjetas de gatos favoritos usando el contexto de favoritos. Cada gato se muestra como un componente `CatCard`.
- * @author Ana Castro
+ * Componente `FavoritesGrid`
  *
- * @returns {JSX.Element} Cuadrícula responsive con los gatos favoritos del usuario.
+ * Este componente renderiza una cuadrícula responsiva con todos los gatos guardados como favoritos
+ * por el usuario. Utiliza el contexto `FavoritesContext` para acceder a la lista de favoritos.
+ *
+ * Cada gato se muestra con el componente `CatCard`, y al pulsar "ver más info", se abre un `Modal`
+ * con los detalles del gato mediante el componente `CatDetails`.
+ *
+ * Si no hay gatos favoritos, se muestra una animación con un mensaje de error traducido.
+ *
+ * Funcionalidades destacadas:
+ * - Acceso al contexto global de favoritos.
+ * - Modal con información detallada del gato seleccionado.
+ * - Animación Lottie en caso de lista vacía.
+ * - Compatible con i18n para mostrar mensajes traducidos.
+ *
+ * @component
+ * @returns {JSX.Element} Una cuadrícula con tarjetas de gatos favoritos o un mensaje si no hay elementos.
+ * @author Ana Castro, Ángel Aragón
+ * @version 1.1
+ * @since `MIC-60` Se agregó soporte de traducción para errores vacíos y animación.
  */
 const FavoritesGrid = () => {
   const { favorites } = useContext(FavoritesContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCat, setSelectedCat] = useState(null);
-
+  const { t } = useTranslation();
   const OpenModal = (cat) => {
     setSelectedCat(cat);
     setIsModalOpen(true);
@@ -23,12 +43,12 @@ const FavoritesGrid = () => {
 
   if (favorites.length <= 0)
     return (
-      <div>
-        <h1 className="text-red-500 text-lg border border-red-300 rounded bg-red-100 p-2 mt-5">
-          Aún no has seleccionado nigún michi como tu favorito 😿 Seleciona los
-          que quieras! 🐱
-        </h1>
-      </div>
+      <>
+        <div className="w-25 h-25">
+          <Lottie animationData={error} />
+        </div>
+        <FormError message={t("favorites_error")} />
+      </>
     );
 
   return (
