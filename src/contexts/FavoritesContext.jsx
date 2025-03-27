@@ -1,6 +1,7 @@
-import React, { createContext, useReducer, useEffect } from 'react';
-import { favoritesReducer } from './FavoritesReducer';
+import React, { createContext, useReducer, useEffect } from "react";
+import { favoritesReducer } from "./FavoritesReducer";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const FavoritesContext = createContext();
 /**
  * @component FavoritesProvider
@@ -14,18 +15,18 @@ export const FavoritesContext = createContext();
  * @returns {JSX.Element} Proveedor de contexto para la gestión de favoritos.
  */
 export const FavoritesProvider = ({ children }) => {
-    const [favorites, dispatch] = useReducer(favoritesReducer, [], () => {
-        const storedFavorites = localStorage.getItem("favorites");
-        return storedFavorites ? JSON.parse(storedFavorites) : [];
-    });
-  
-    useEffect(() => {
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-    }, [favorites]);
-   
-    return (
-        <FavoritesContext.Provider value={{ favorites, dispatch }}>
-            {children}
-        </FavoritesContext.Provider>
-    );
+  const [favorites, dispatch] = useReducer(favoritesReducer, [], () => {
+    const storedFavorites = localStorage.getItem("favorites");
+    return storedFavorites ? JSON.parse(storedFavorites) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  return (
+    <FavoritesContext.Provider value={{ favorites, dispatch }}>
+      {children}
+    </FavoritesContext.Provider>
+  );
 };
