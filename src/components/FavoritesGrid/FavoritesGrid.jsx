@@ -20,8 +20,8 @@ const FavoritesGrid = () => {
                               "..."
                             : "No description available."
                     }
-                    name={favorite.nombre}
-                    caracter={favorite.caracter}
+                    name={favorite.name}
+                    temperament={favorite.temperament}
                 />
             ))}
         </div>
