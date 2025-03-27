@@ -4,6 +4,8 @@ import {TbPlayerTrackPrev, TbPlayerTrackNext } from "react-icons/tb";
 import CatCard from "../CatCard/CatCard";
 import {HomeContext} from "../../contexts/HomeContext";
 import gatos from "../../assets/data/catsData";
+import Modal from '../Modal/Modal'; 
+import CatDetails from '../CatDetails/CatDetails';
 import "./CatRusel.css";
 
 /**
@@ -21,6 +23,8 @@ const CatRusel = () => {
     const [isAnimating, setIsAnimating] = useState(false);
     const [selectedCat, setSelectedCat] = useState(null);
     const {homeList} = useContext(HomeContext);    
+    const [isModalOpen, setIsModalOpen] = useState(false); 
+    const [closeModal, setcloseModal] =useState(true);
 
     useEffect(() => {
         if (homeList.length > 0) {
@@ -75,6 +79,17 @@ const CatRusel = () => {
         return () => window.removeEventListener("resize", printCardsResolution);
     }, []);
 
+    const OpenModal = (cat) => {
+        setSelectedCat(cat);
+        setIsModalOpen(true);
+        };
+    
+     
+    const CloseModal = () => {
+        setIsModalOpen(false);
+        setSelectedCat(null);
+    };
+
     return (
         <div className="w-[100%] slider-container flex justify-center items-center box-content">
             <button className="nav-button cursor-pointer prev md:ml-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md p-1 w-9 h-9 md:w-12 md:h-12 transition" onClick={prevIndex}>
@@ -93,21 +108,20 @@ const CatRusel = () => {
                         {homeList.length > 0 &&
                             Array.from({ length: printCardsResolution }, (_, i) => {
                                 const cardIndex = (index + i) % homeList.length;
-                                return (
-                                    // <div  className="max-h-120 max-w-70  flex">
-                                        <CatCard
-                                            key={homeList[cardIndex].id}
-                                            action={() => setSelectedCat(homeList[cardIndex])}
-                                            product={homeList[cardIndex]}
-                                            id={homeList[cardIndex].id}
-                                            url={homeList[cardIndex].url}
-                                            breeds={homeList[cardIndex].breeds[0].name}
-                                            description={
-                                                homeList[cardIndex].breeds[0].description.slice(0, 150) + "..."}
-                                            name={homeList[cardIndex].name}
-                                            temperament={homeList[cardIndex].temperament}
-                                        />
-                                    // </div>
+                                return (                                    
+                                    <CatCard
+                                        key={homeList[cardIndex].id}
+                                        action={() => setSelectedCat(homeList[cardIndex])}
+                                        product={homeList[cardIndex]}
+                                        id={homeList[cardIndex].id}
+                                        url={homeList[cardIndex].url}
+                                        breeds={homeList[cardIndex].breeds[0].name}
+                                        description={
+                                            homeList[cardIndex].breeds[0].description.slice(0, 150) + "..."}
+                                        name={homeList[cardIndex].name}
+                                        temperament={homeList[cardIndex].temperament}
+                                        actionTwo={() => OpenModal(homeList[cardIndex])}                                        
+                                    />                                    
                                 );
                             })}
                     </motion.div>
@@ -116,6 +130,18 @@ const CatRusel = () => {
             <button className="nav-button cursor-pointer prev md:mr-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md p-1 w-9 h-9 md:w-12 md:h-12 transition" onClick={nextIndex}>
                 <TbPlayerTrackNext />
             </button>
+           
+            {isModalOpen && selectedCat && (
+                <div className="[&_h2]:text-2xl"><Modal 
+                  isOpen={isModalOpen} 
+                  title={selectedCat.name} 
+                  onClose={CloseModal}
+                  className="text-2xl"
+                >
+                  <CatDetails cat={selectedCat} />
+                </Modal>
+                </div>
+            )}
         </div>
     );
 };
