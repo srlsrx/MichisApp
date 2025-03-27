@@ -34,7 +34,7 @@ function AdoptForm({ catName }) {
 
   return (
     <>
-      <div className="w-[30%]">
+      <div className="xl:w-[30%]">
         <h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400 text-center">
           Formulario de adopción de {catName}
         </h2>
@@ -43,11 +43,19 @@ function AdoptForm({ catName }) {
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-6 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md"
         >
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            Los campos marcados con{" "}
+            <span className="text-teal-500 font-bold">*</span> son obligatorios.
+          </p>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Nombre completo
+            <label
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              for=""
+            >
+              Nombre completo<span className="text-teal-500">*</span>
             </label>
             <input
+              id="name"
               type="text"
               {...register("name", { required: "Este campo es obligatorio" })}
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-400"
@@ -57,10 +65,14 @@ function AdoptForm({ catName }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Correo electrónico
+            <label
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              for="email"
+            >
+              Correo electrónico<span className="text-teal-500">*</span>
             </label>
             <input
+              id="email"
               type="email"
               {...register("email", {
                 required: "Este campo es obligatorio",
@@ -79,7 +91,7 @@ function AdoptForm({ catName }) {
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
               htmlFor="tel"
             >
-              ¿Teléfono?
+              ¿Teléfono?<span className="text-teal-500">*</span>
             </label>
             <input
               id="tel"
@@ -87,17 +99,19 @@ function AdoptForm({ catName }) {
               {...register("tel", {
                 required: "Este campo es obligatorio",
                 pattern: {
-                  value: /\d{9,}/,
-                  message: "El telefono debe tener al menos 9 dígitos",
+                  value: /^[0-9]{9}$/,
+                  message: "El telefono debe tener 9 dígitos",
                 },
               })}
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-400"
               placeholder="982 XXX XXX"
             />
+            <FormError message={errors.tel?.message} />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               ¿Por qué quieres adoptar?
+              <span className="text-gray-400 text-xs">(opcional)</span>
             </label>
             <textarea
               {...register("message")}

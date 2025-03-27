@@ -14,7 +14,7 @@ function FormError({ message }) {
   if (!message) return null;
 
   return (
-    <p className="text-red-500 text-sm border border-red-300 rounded bg-red-100 p-2 mt-1">
+    <p className="text-red-500 text-sm border border-red-300 rounded bg-red-100 p-2 mt-5">
       {message}
     </p>
   );
