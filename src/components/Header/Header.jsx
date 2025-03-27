@@ -9,7 +9,7 @@
  */
 
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import logo from '/images/paws&claws-logo.png';
 import ThemeToggle from '../Switch/ThemeInit';
@@ -26,13 +26,14 @@ function Header() {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const location = useLocation();
     const { t } = useTranslation();
+    const navigate = useNavigate()
 
     return (
         <>
             <header className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-teal-500 to-green-500 shadow-md w-full">
 
                 <div className="flex items-center gap-2">
-                    <img src={logo} alt="Paws & Claws" className="h-16 w-auto" />
+                    <img src={logo} alt="Paws & Claws" onClick={()=>navigate("/")} className="h-16 w-auto cursor-pointer" />
                 </div>
 
                 <nav className="hidden md:flex gap-6">

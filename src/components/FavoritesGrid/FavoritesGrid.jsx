@@ -1,6 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
 import CatCard from "../CatCard/CatCard";
+import Modal from '../Modal/Modal'; 
+import CatDetails from '../CatDetails/CatDetails';
 
 /**
  * @component FavoritesGrid
@@ -11,8 +13,29 @@ import CatCard from "../CatCard/CatCard";
  */
 const FavoritesGrid = () => {
     const { favorites } = useContext(FavoritesContext);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [closeModal, setcloseModal] = useState(true);
+    const [selectedCat, setSelectedCat] = useState(null);
 
-    if(favorites.length <= 0) return(<div><h1 className="text-red-500 text-lg border border-red-300 rounded bg-red-100 p-2 mt-5">Aún no has seleccionado nigún michi como tu favorito 😿 Seleciona los que quieras! 🐱</h1></div>)
+    const OpenModal = (cat) => {
+        setSelectedCat(cat);
+        setIsModalOpen(true);
+    };
+
+    const CloseModal = () => {
+        setIsModalOpen(false);
+        setSelectedCat(null);
+    };
+
+    if (favorites.length <= 0)
+        return (
+            <div>
+                <h1 className="text-red-500 text-lg border border-red-300 rounded bg-red-100 p-2 mt-5">
+                    Aún no has seleccionado nigún michi como tu favorito 😿
+                    Seleciona los que quieras! 🐱
+                </h1>
+            </div>
+        );
 
     return (
         <div className="grid justify-center grid-cols-[repeat(auto-fit,_minmax(280px,_320px))] w-[78%] gap-15 py-15">
@@ -31,8 +54,21 @@ const FavoritesGrid = () => {
                     }
                     name={favorite.name}
                     temperament={favorite.temperament}
+                    seeInfo={() => OpenModal(favorite)}
                 />
             ))}
+            {isModalOpen && (
+                <div className="[&_h2]:text-2xl">
+                    <Modal
+                        isOpen={isModalOpen}
+                        title={selectedCat.name}
+                        onClose={CloseModal}
+                        className="text-2xl"
+                    >
+                        <CatDetails cat={selectedCat} />
+                    </Modal>
+                </div>
+            )}
         </div>
     );
 };

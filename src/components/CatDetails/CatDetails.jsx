@@ -25,7 +25,6 @@ const CatDetails = ({ cat }) => {
     const {homeList} = useContext(HomeContext);
 
     const navigate = useNavigate();
-    console.log(cat)
     return (
       <div className="mt-4 w-full flex flex-col items-start">
         <img src={cat.url} alt={cat.name} className="w-100 h-70 object-cover"/>        
