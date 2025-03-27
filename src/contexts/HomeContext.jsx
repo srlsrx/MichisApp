@@ -18,6 +18,8 @@ export const HomeProvider = ({ children }) => {
         ...cat,
         name: shuffled[index % gatos.length].nombre,
         temperament: shuffled[index % gatos.length].temperament,
+        age: shuffled[index % gatos.length].age,
+        vaccines: shuffled[index % gatos.length].vaccines,
       }));
       dispatch({ type: "SET_HOME_LIST", payload: enriched });     
     } catch (error) {

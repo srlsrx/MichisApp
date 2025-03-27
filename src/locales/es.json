@@ -7,6 +7,13 @@
     "construction": "Página en Construcción",
     "construction_text": "Estamos trabajando para ofrecerte una mejor experiencia. ¡Vuelve pronto!",
     "about_us": "Sobre Nosotros",
+    "Breed": "Raza",
+    "Description": "Descripción",
+    "Temperament": "Carácter",
+    "Age": "Edad",
+    "Vaccines": "Vacunas", 
+    "Yes": "Si",   
+    "Ver_mas": "Ver más",
     "temperament": {
         "playful_affectionate": "Juguetón y cariñoso",
         "calm_cuddly": "Tranquila y mimosa",

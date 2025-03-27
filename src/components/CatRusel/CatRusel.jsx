@@ -26,18 +26,7 @@ const CatRusel = () => {
     const [isModalOpen, setIsModalOpen] = useState(false); 
     const [closeModal, setcloseModal] =useState(true);
 
-    useEffect(() => {
-        if (homeList.length > 0) {
-            const shuffled = gatos.sort(() => 0.5 - Math.random());
-            const enriched = homeList.map((cat, index) => ({
-                ...cat,
-                name: shuffled[index % gatos.length].nombre,
-                temperament: shuffled[index % gatos.length].temperament,
-            }));
-            setIndex(0); // reset carrusel index
-            homeList.splice(0, homeList.length, ...enriched); // muta directamente el contexto
-        }
-    }, [homeList]);
+  
 
     const nextIndex = () => {
         if (isAnimating || homeList.length === 0) return;
@@ -120,7 +109,7 @@ const CatRusel = () => {
                                             homeList[cardIndex].breeds[0].description.slice(0, 150) + "..."}
                                         name={homeList[cardIndex].name}
                                         temperament={homeList[cardIndex].temperament}
-                                        actionTwo={() => OpenModal(homeList[cardIndex])}                                        
+                                        seeInfo={() => OpenModal(homeList[cardIndex])}                                        
                                     />                                    
                                 );
                             })}
