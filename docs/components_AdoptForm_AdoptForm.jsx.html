@@ -33,6 +33,7 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 import Lottie from "lottie-react";
 import success from "../../assets/animations/success.json";
+import { useTranslation } from "react-i18next";
 
 /**
  * Formulario de adopción para un gato específico.
@@ -44,7 +45,7 @@ import success from "../../assets/animations/success.json";
  * @param {Object} props - Propiedades del componente.
  * @param {string} props.catName - Nombre del gato.
  * @returns {JSX.Element} Formulario renderizado.
- * @author Ángel
+ * @author {Ángel Aragón}
  */
 function AdoptForm({ catName }) {
   const {
@@ -53,84 +54,107 @@ function AdoptForm({ catName }) {
     formState: { errors },
   } = useForm();
 
+  const [response, setResponse] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const { t } = useTranslation();
+
   const onSubmit = (data) => {
-    console.log("Formulario enviado:", data);
+    setResponse(data);
     setIsModalOpen(true);
   };
 
   return (
     &lt;>
-      &lt;div className="w-[30%]">
+      &lt;div className="xl:w-[30%]">
         &lt;h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400 text-center">
-          Formulario de adopción de {catName}
+          {t("adopt_form_title")} {catName}
         &lt;/h2>
 
         &lt;form
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-6 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md"
         >
+          &lt;p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t("adopt_form_info_start")}{" "}
+            &lt;span className="text-teal-500 font-bold">*&lt;/span>{" "}
+            {t("adopt_form_info_end")}.
+          &lt;/p>
           &lt;div>
-            &lt;label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Nombre completo
+            &lt;label
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              for="name"
+            >
+              {t("adopt_form_name_label")}
+              &lt;span className="text-teal-500">*&lt;/span>
             &lt;/label>
             &lt;input
+              id="name"
               type="text"
-              {...register("name", { required: "Este campo es obligatorio" })}
+              {...register("name", { required: t("adopt_form_required") })}
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-400"
-              placeholder="Tu nombre"
+              placeholder={t("adopt_form_name_placeholder")}
             />
             &lt;FormError message={errors.name?.message} />
           &lt;/div>
 
           &lt;div>
-            &lt;label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Correo electrónico
+            &lt;label
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              for="email"
+            >
+              {t("adopt_form_email_label")}
+              &lt;span className="text-teal-500">*&lt;/span>
             &lt;/label>
             &lt;input
+              id="email"
               type="email"
               {...register("email", {
-                required: "Este campo es obligatorio",
+                required: t("adopt_form_required"),
                 pattern: {
                   value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-                  message: "Email no válido",
+                  message: t("adopt_form_email_invalid"),
                 },
               })}
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-400"
-              placeholder="tucorreo@ejemplo.com"
+              placeholder={t("adopt_form_email_placeholder")}
             />
             &lt;FormError message={errors.email?.message} />
           &lt;/div>
           &lt;div>
             &lt;label
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-              htmlFor="tel"
+              htmlFor="tlf"
             >
-              ¿Teléfono?
+              {t("adopt_form_tlf_label")}
+              &lt;span className="text-teal-500">*&lt;/span>
             &lt;/label>
             &lt;input
-              id="tel"
-              type="tel"
-              {...register("tel", {
-                required: "Este campo es obligatorio",
+              id="tlf"
+              type="tlf"
+              {...register("tlf", {
+                required: t("adopt_form_required"),
                 pattern: {
-                  value: /\d{9,}/,
-                  message: "El telefono debe tener al menos 9 dígitos",
+                  value: /^[0-9]{9}$/,
+                  message: t("adopt_form_tlf_invalid"),
                 },
               })}
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-400"
               placeholder="982 XXX XXX"
             />
+            &lt;FormError message={errors.tlf?.message} />
           &lt;/div>
           &lt;div>
             &lt;label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              ¿Por qué quieres adoptar?
+              {t("adopt_form_msg_label")}
+              &lt;span className="text-gray-400 text-xs">
+                ({t("adopt_form_msg_label_opt")})
+              &lt;/span>
             &lt;/label>
             &lt;textarea
               {...register("message")}
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-400"
-              placeholder="Cuéntanos un poco sobre ti..."
+              placeholder={t("adopt_form_msg_placeholder")}
               rows={4}
             />
           &lt;/div>
@@ -141,12 +165,15 @@ function AdoptForm({ catName }) {
       &lt;Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="¡Solicitud enviada!"
+        title={t("adopt_form_modal_title")}
         icon={&lt;Lottie animationData={success} />}
       >
         &lt;p className="text-sm">
-          Gracias por querer adoptar a &lt;strong>{catName}&lt;/strong>. Nos pondremos
-          en contacto contigo pronto 🐾
+          😸 {t("adopt_form_modal_msg_thx")} &lt;strong>{response?.name}&lt;/strong>{" "}
+          {t("adopt_form_modal_msg_adopt")} &lt;strong>{catName}&lt;/strong> 🩵
+          &lt;br />
+          {t("adopt_form_modal_msg_contact")} &lt;strong>{response?.email}&lt;/strong>{" "}
+          😽.
         &lt;/p>
       &lt;/Modal>
     &lt;/>
@@ -170,7 +197,7 @@ export default AdoptForm;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Mar 27 2025 14:28:28 GMT+0100 (hora estándar de Europa central)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Mar 27 2025 23:10:43 GMT+0100 (hora estándar de Europa central)
 </footer>
 
 <script> prettyPrint(); </script>

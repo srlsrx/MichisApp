@@ -51,65 +51,76 @@ import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
  * @returns {JSX.Element} El componente Sidebar renderizado.
  */
 function Sidebar({ isOpen, toggleSidebar }) {
-    const location = useLocation();
-    const {t}=useTranslation();
+  const location = useLocation();
+  const { t } = useTranslation();
 
-    return (
-        &lt;aside
-            className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-gray-900 to-gray-700 text-white transform z-50 ${
-                isOpen ? "translate-x-0" : "-translate-x-full"
-            } transition-transform duration-300 ease-in-out shadow-lg md:hidden`}
+  return (
+    &lt;aside
+      className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-gray-900 to-gray-700 text-white transform z-50 ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      } transition-transform duration-300 ease-in-out shadow-lg min-[925px]:hidden`}
+    >
+      {/* Btn cerrar Sidebar */}
+      &lt;div className="p-4 flex justify-between items-center border-b border-gray-600">
+        &lt;span className="text-lg font-semibold">Menú&lt;/span>
+        &lt;button
+          onClick={toggleSidebar}
+          className="text-white text-2xl hover:text-teal-500 cursor-pointer"
         >
-            {/* Btn cerrar Sidebar */}
-            &lt;div className="p-4 flex justify-between items-center border-b border-gray-600">
-                &lt;span className="text-lg font-semibold">Menú&lt;/span>
-                &lt;button onClick={toggleSidebar} className="text-white text-2xl">
-                    &lt;i className="bi bi-x">&lt;/i>
-                &lt;/button>
-            &lt;/div>
+          &lt;i className="bi bi-x">&lt;/i>
+        &lt;/button>
+      &lt;/div>
 
-            &lt;nav className="p-4 flex flex-col gap-4">
-            &lt;Link
-                        to="/"
-                        className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-teal-50'
-                            }`}
-                    >
-                        &lt;i className="bi bi-house-door-fill">&lt;/i> Home
-                    &lt;/Link>
-                    &lt;Link
-                        to="/adopt"
-                        className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/adopt' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-teal-50'
-                            }`}
-                    >
-                        &lt;i className="bi bi-heart-fill">&lt;/i> {t("adopt")}
-                    &lt;/Link>
-                    &lt;Link
-                        to="/fav"
-                        className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/fav' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-teal-50'
-                            }`}
-                    >
-                        &lt;i className="bi bi-star-fill text-lg">&lt;/i> {t("favorites")}
-                    &lt;/Link>
-                &lt;Link
-                    to="/about-us"
-                    className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${
-                        location.pathname === "/about-us"
-                            ? "bg-white dark:bg-gray-900 text-teal-500 font-bold"
-                            : "text-white dark:text-teal-50"
-                    }`}
-                >
-                    &lt;i className="bi bi-person-fill text-lg">&lt;/i>{" "}
-                    {t("about_us")}
-                &lt;/Link>
-                &lt;LanguageSwitcher/>
-            &lt;/nav>
-        &lt;/aside>
-    );
+      &lt;nav className="p-4 flex flex-col gap-4">
+        &lt;Link
+          to="/"
+          className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${
+            location.pathname === "/"
+              ? "bg-white dark:bg-gray-900 text-teal-500 font-bold"
+              : "text-white dark:text-teal-50"
+          }`}
+        >
+          &lt;i className="bi bi-house-door-fill">&lt;/i> Home
+        &lt;/Link>
+        &lt;Link
+          to="/adopt"
+          className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${
+            location.pathname === "/adopt"
+              ? "bg-white dark:bg-gray-900 text-teal-500 font-bold"
+              : "text-white dark:text-teal-50"
+          }`}
+        >
+          &lt;i className="bi bi-heart-fill">&lt;/i> {t("adopt")}
+        &lt;/Link>
+        &lt;Link
+          to="/fav"
+          className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${
+            location.pathname === "/fav"
+              ? "bg-white dark:bg-gray-900 text-teal-500 font-bold"
+              : "text-white dark:text-teal-50"
+          }`}
+        >
+          &lt;i className="bi bi-star-fill text-lg">&lt;/i> {t("favorites")}
+        &lt;/Link>
+        &lt;Link
+          to="/about-us"
+          className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${
+            location.pathname === "/about-us"
+              ? "bg-white dark:bg-gray-900 text-teal-500 font-bold"
+              : "text-white dark:text-teal-50"
+          }`}
+        >
+          &lt;i className="bi bi-person-fill text-lg">&lt;/i> {t("about_us")}
+        &lt;/Link>
+        &lt;LanguageSwitcher />
+      &lt;/nav>
+    &lt;/aside>
+  );
 }
 
 Sidebar.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    toggleSidebar: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  toggleSidebar: PropTypes.func.isRequired,
 };
 
 export default Sidebar;
@@ -129,7 +140,7 @@ export default Sidebar;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Mar 27 2025 14:28:28 GMT+0100 (hora estándar de Europa central)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Mar 27 2025 23:10:43 GMT+0100 (hora estándar de Europa central)
 </footer>
 
 <script> prettyPrint(); </script>

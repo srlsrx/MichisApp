@@ -150,7 +150,7 @@ Expone <code>favorites</code> y <code>dispatch</code> a través del contexto <co
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="contexts_FavoritesContext.jsx.html">contexts/FavoritesContext.jsx</a>, <a href="contexts_FavoritesContext.jsx.html#line16">line 16</a>
+        <a href="contexts_FavoritesContext.jsx.html">contexts/FavoritesContext.jsx</a>, <a href="contexts_FavoritesContext.jsx.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -220,7 +220,7 @@ Expone la lista enriquecida a través del contexto <code>HomeContext</code>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="contexts_HomeContext.jsx.html">contexts/HomeContext.jsx</a>, <a href="contexts_HomeContext.jsx.html#line19">line 19</a>
+        <a href="contexts_HomeContext.jsx.html">contexts/HomeContext.jsx</a>, <a href="contexts_HomeContext.jsx.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -444,7 +444,7 @@ y un mensaje informativo.</p>
     
 
     
-    <h4 class="name" id="Adopt"><span class="type-signature"></span>Adopt<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Adopt"><span class="type-signature"></span>Adopt<span class="signature">()</span><span class="type-signature"> &rarr; {JSX.Element}</span></h4>
     
 
     
@@ -452,8 +452,17 @@ y un mensaje informativo.</p>
 
 
 <div class="description">
-    <p>Página de adopción que recibe el nombre del gato desde el estado
-y lo pasa al formulario de adopción como prop.</p>
+    <p>Página de adopción que muestra un formulario para adoptar un gato específico.</p>
+<p>Este componente recibe el nombre del gato a través del estado de navegación (<code>location.state.catName</code>)
+y renderiza el formulario correspondiente para completar la solicitud.</p>
+<p>Si no se proporciona el nombre del gato (por ejemplo, si se accede a la ruta directamente),
+se muestra una animación de error y un mensaje indicándolo.</p>
+<p>Utiliza:</p>
+<ul>
+<li><code>react-router-dom</code> para obtener los datos de navegación.</li>
+<li><code>react-i18next</code> para traducciones multilenguaje.</li>
+<li><code>lottie-react</code> para animación en caso de error.</li>
+</ul>
 </div>
 
 
@@ -487,6 +496,13 @@ y lo pasa al formulario de adopción como prop.</p>
     
 
     
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>{Ángel Aragón}</li>
+        </ul>
+    </dd>
+    
 
     
 
@@ -497,7 +513,7 @@ y lo pasa al formulario de adopción como prop.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pages_Adopt_Adopt.jsx.html">pages/Adopt/Adopt.jsx</a>, <a href="pages_Adopt_Adopt.jsx.html#line9">line 9</a>
+        <a href="pages_Adopt_Adopt.jsx.html">pages/Adopt/Adopt.jsx</a>, <a href="pages_Adopt_Adopt.jsx.html#line27">line 27</a>
     </li></ul></dd>
     
 
@@ -522,6 +538,28 @@ y lo pasa al formulario de adopción como prop.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>La página de adopción renderizada o un error si no hay gato seleccionado.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">JSX.Element</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -678,7 +716,7 @@ mostrando su nombre, email y un mensaje opcional. Se adapta a modo claro y oscur
     <dt class="tag-author">Author:</dt>
     <dd class="tag-author">
         <ul>
-            <li>Ángel</li>
+            <li>{Ángel Aragón}</li>
         </ul>
     </dd>
     
@@ -692,7 +730,7 @@ mostrando su nombre, email y un mensaje opcional. Se adapta a modo claro y oscur
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_AdoptForm_AdoptForm.jsx.html">components/AdoptForm/AdoptForm.jsx</a>, <a href="components_AdoptForm_AdoptForm.jsx.html#line21">line 21</a>
+        <a href="components_AdoptForm_AdoptForm.jsx.html">components/AdoptForm/AdoptForm.jsx</a>, <a href="components_AdoptForm_AdoptForm.jsx.html#line22">line 22</a>
     </li></ul></dd>
     
 
@@ -1221,7 +1259,7 @@ a distintos usos mediante props. Es ideal para mantener consistencia visual en t
     
 
     
-    <h4 class="name" id="CatCard"><span class="type-signature">(async) </span>CatCard<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="CatCard"><span class="type-signature"></span>CatCard<span class="signature">()</span><span class="type-signature"> &rarr; {JSX.Element}</span></h4>
     
 
     
@@ -1229,7 +1267,7 @@ a distintos usos mediante props. Es ideal para mantener consistencia visual en t
 
 
 <div class="description">
-    <p>configuramos la card y le damos estilos</p>
+    <p>Componente que muestra detalles generales del gato y utiliza los componentes <code>FavoritesButton</code> y <code>Button</code></p>
 </div>
 
 
@@ -1308,7 +1346,23 @@ a distintos usos mediante props. Es ideal para mantener consistencia visual en t
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <p>Renderiza la card del gato</p>
+</div>
 
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">JSX.Element</span>
+
+
+    </dd>
+</dl>
 
     
 
@@ -1328,11 +1382,6 @@ a distintos usos mediante props. Es ideal para mantener consistencia visual en t
     
 
 
-
-<div class="description">
-    <p>Muestra los detalles de un gato, incluyendo imagen, raza, descripción, temperamento,
-edad y estado de vacunación. También permite realizar una acción (como adoptar) mediante un botón.</p>
-</div>
 
 
 
@@ -1512,7 +1561,7 @@ edad y estado de vacunación. También permite realizar una acción (como adopta
     <dt class="tag-author">Author:</dt>
     <dd class="tag-author">
         <ul>
-            <li>Ana Castro</li>
+            <li>{Ana Castro}</li>
         </ul>
     </dd>
     
@@ -1584,7 +1633,7 @@ edad y estado de vacunación. También permite realizar una acción (como adopta
     
 
     
-    <h4 class="name" id="CatRusel"><span class="type-signature">(async) </span>CatRusel<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="CatRusel"><span class="type-signature"></span>CatRusel<span class="signature">()</span><span class="type-signature"> &rarr; {JSX.Element}</span></h4>
     
 
     
@@ -1592,8 +1641,7 @@ edad y estado de vacunación. También permite realizar una acción (como adopta
 
 
 <div class="description">
-    <p>Importamos los datos desde catService y la card desde
-CatCard para visionarlos  y ordenarlos en el carrusel CatsSlider</p>
+    <p>Componente que engloba los componentes <code>CatCard</code> y desliza permitiendo la navegación entre ellos.</p>
 </div>
 
 
@@ -1644,7 +1692,7 @@ CatCard para visionarlos  y ordenarlos en el carrusel CatsSlider</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_CatRusel_CatRusel.jsx.html">components/CatRusel/CatRusel.jsx</a>, <a href="components_CatRusel_CatRusel.jsx.html#line19">line 19</a>
+        <a href="components_CatRusel_CatRusel.jsx.html">components/CatRusel/CatRusel.jsx</a>, <a href="components_CatRusel_CatRusel.jsx.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -1672,7 +1720,25 @@ CatCard para visionarlos  y ordenarlos en el carrusel CatsSlider</p>
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <ul>
+<li>Renderizado del componente CatRusel y los componentes <code>CatCard</code></li>
+</ul>
+</div>
 
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">JSX.Element</span>
+
+
+    </dd>
+</dl>
 
     
 
@@ -2140,7 +2206,19 @@ Esta página forma parte de la navegación principal de la aplicación.</p>
 
 
 <div class="description">
-    <p>Renderiza una cuadrícula de tarjetas de gatos favoritos usando el contexto de favoritos. Cada gato se muestra como un componente <code>CatCard</code>.</p>
+    <p>Componente <code>FavoritesGrid</code></p>
+<p>Este componente renderiza una cuadrícula responsiva con todos los gatos guardados como favoritos
+por el usuario. Utiliza el contexto <code>FavoritesContext</code> para acceder a la lista de favoritos.</p>
+<p>Cada gato se muestra con el componente <code>CatCard</code>, y al pulsar &quot;ver más info&quot;, se abre un <code>Modal</code>
+con los detalles del gato mediante el componente <code>CatDetails</code>.</p>
+<p>Si no hay gatos favoritos, se muestra una animación con un mensaje de error traducido.</p>
+<p>Funcionalidades destacadas:</p>
+<ul>
+<li>Acceso al contexto global de favoritos.</li>
+<li>Modal con información detallada del gato seleccionado.</li>
+<li>Animación Lottie en caso de lista vacía.</li>
+<li>Compatible con i18n para mostrar mensajes traducidos.</li>
+</ul>
 </div>
 
 
@@ -2158,7 +2236,13 @@ Esta página forma parte de la navegación principal de la aplicación.</p>
 <dl class="details">
 
     
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.1</li></ul></dd>
+    
 
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>`MIC-60` Se agregó soporte de traducción para errores vacíos y animación.</li></ul></dd>
     
 
     
@@ -2177,7 +2261,7 @@ Esta página forma parte de la navegación principal de la aplicación.</p>
     <dt class="tag-author">Author:</dt>
     <dd class="tag-author">
         <ul>
-            <li>Ana Castro</li>
+            <li>Ana Castro, Ángel Aragón</li>
         </ul>
     </dd>
     
@@ -2191,7 +2275,7 @@ Esta página forma parte de la navegación principal de la aplicación.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_FavoritesGrid_FavoritesGrid.jsx.html">components/FavoritesGrid/FavoritesGrid.jsx</a>, <a href="components_FavoritesGrid_FavoritesGrid.jsx.html#line12">line 12</a>
+        <a href="components_FavoritesGrid_FavoritesGrid.jsx.html">components/FavoritesGrid/FavoritesGrid.jsx</a>, <a href="components_FavoritesGrid_FavoritesGrid.jsx.html#line34">line 34</a>
     </li></ul></dd>
     
 
@@ -2220,7 +2304,7 @@ Esta página forma parte de la navegación principal de la aplicación.</p>
 
         
 <div class="param-desc">
-    <p>Cuadrícula responsive con los gatos favoritos del usuario.</p>
+    <p>Una cuadrícula con tarjetas de gatos favoritos o un mensaje si no hay elementos.</p>
 </div>
 
 
@@ -2729,6 +2813,8 @@ para mostrar errores debajo de cada input de forma uniforme.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -2754,6 +2840,14 @@ para mostrar errores debajo de cada input de forma uniforme.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2776,6 +2870,14 @@ para mostrar errores debajo de cada input de forma uniforme.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2800,6 +2902,14 @@ para mostrar errores debajo de cada input de forma uniforme.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -2822,6 +2932,14 @@ para mostrar errores debajo de cada input de forma uniforme.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2846,10 +2964,51 @@ para mostrar errores debajo de cada input de forma uniforme.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last"><p>Icono o animación opcional que aparece a la izq del título.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>props.className</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Clases CSS opcionales.</p></td>
         </tr>
 
     
@@ -2897,7 +3056,7 @@ para mostrar errores debajo de cada input de forma uniforme.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_Modal_Modal.jsx.html">components/Modal/Modal.jsx</a>, <a href="components_Modal_Modal.jsx.html#line17">line 17</a>
+        <a href="components_Modal_Modal.jsx.html">components/Modal/Modal.jsx</a>, <a href="components_Modal_Modal.jsx.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -3851,7 +4010,7 @@ para mostrar errores debajo de cada input de forma uniforme.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Mar 27 2025 14:28:28 GMT+0100 (hora estándar de Europa central)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Mar 27 2025 23:10:43 GMT+0100 (hora estándar de Europa central)
 </footer>
 
 <script> prettyPrint(); </script>

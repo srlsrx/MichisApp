@@ -9,9 +9,9 @@ import i18n from "./i18n";
 /** importamos BrowserRouter para envolver toda la aplicación y habilitar la navegacion de
  * todas las rutas sin recargar la página usando el historial de navegación actualizando las URLs
  *
- * @async
- *   @returns
- *   @author {Ana Castro}
+ *  @async
+ *  
+ *  @author {Ana Castro}
  */
 
 createRoot(document.getElementById("root")).render(
