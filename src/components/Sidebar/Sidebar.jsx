@@ -43,21 +43,21 @@ function Sidebar({ isOpen, toggleSidebar }) {
             <nav className="p-4 flex flex-col gap-4">
             <Link
                         to="/"
-                        className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-gray-900'
+                        className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-teal-50'
                             }`}
                     >
                         <i className="bi bi-house-door-fill"></i> Home
                     </Link>
                     <Link
                         to="/adopt"
-                        className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/adopt' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-gray-900'
+                        className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/adopt' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-teal-50'
                             }`}
                     >
                         <i className="bi bi-heart-fill"></i> {t("adopt")}
                     </Link>
                     <Link
                         to="/fav"
-                        className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/fav' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-gray-900'
+                        className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/fav' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-teal-50'
                             }`}
                     >
                         <i className="bi bi-star-fill text-lg"></i> {t("favorites")}
@@ -65,9 +65,9 @@ function Sidebar({ isOpen, toggleSidebar }) {
                 <Link
                     to="/about-us"
                     className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${
-                        location.pathname === "/fav"
+                        location.pathname === "/about-us"
                             ? "bg-white dark:bg-gray-900 text-teal-500 font-bold"
-                            : "text-white dark:text-gray-900"
+                            : "text-white dark:text-teal-50"
                     }`}
                 >
                     <i className="bi bi-person-fill text-lg"></i>{" "}
