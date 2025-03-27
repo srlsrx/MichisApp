@@ -59,7 +59,7 @@ function Header() {
                     </Link>
                     <Link
                         to="/about-us"
-                        className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/fav' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-gray-900'
+                        className={`relative flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-300 hover:bg-white dark:hover:bg-gray-900 hover:text-teal-500 ${location.pathname === '/about-us' ? 'bg-white dark:bg-gray-900 text-teal-500 font-bold' : 'text-white dark:text-gray-900'
                             }`}
                     >
                         <i className="bi bi-person-fill text-lg"></i> {t("about_us")}
