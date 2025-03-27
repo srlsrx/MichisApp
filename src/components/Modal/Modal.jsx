@@ -11,27 +11,28 @@ import PropTypes from "prop-types";
  * @param {string} title - Título principal del modal.
  * @param {React.ReactNode} children - Contenido dentro del modal (texto, HTML o componentes).
  * @param {React.ReactNode} icon - Icono o animación opcional que aparece a la izq del título.
+ * @param {string} [props.className] - Clases CSS opcionales. 
  * @returns {JSX.Element|null} El modal renderizado o `null` si está cerrado.
  * @author Ángel
  */
-function Modal({ isOpen, onClose, title, children, icon }) {
+function Modal({ isOpen, onClose, title, children, icon, className }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
+    <div className={`fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4 ${className}`}>
       <div className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-lg shadow-lg w-full max-w-md p-6 relative animate-fadeIn">
         <div className="flex items-center justify-between mb-4">
           <div className="w-10 h-10 flex items-center justify-center">
-            {icon}
+            {icon}            
           </div>
 
-          <h2 className="flex-1 text-lg font-bold text-center text-teal-500">
+          <h2 className="flex-1 text-2xl font-bold text-center text-teal-500">
             {title}
           </h2>
 
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-red-500 text-2xl font-bold transition cursor-pointer"
+            className="text-gray-400 hover:text-teal-500 text-3xl font-bold transition cursor-pointer"
             aria-label="Cerrar modal"
           >
             &times;
@@ -50,6 +51,7 @@ Modal.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node.isRequired,
   icon: PropTypes.node,
+  className: PropTypes.string,
 };
 
 export default Modal;

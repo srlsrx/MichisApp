@@ -3,7 +3,6 @@ import {motion, AnimatePresence} from "framer-motion";
 import {TbPlayerTrackPrev, TbPlayerTrackNext } from "react-icons/tb";
 import CatCard from "../CatCard/CatCard";
 import {HomeContext} from "../../contexts/HomeContext";
-import gatos from "../../assets/data/catsData";
 import Modal from '../Modal/Modal'; 
 import CatDetails from '../CatDetails/CatDetails';
 import "./CatRusel.css";
@@ -24,7 +23,7 @@ const CatRusel = () => {
     const [selectedCat, setSelectedCat] = useState(null);
     const {homeList} = useContext(HomeContext);    
     const [isModalOpen, setIsModalOpen] = useState(false); 
-    const [closeModal, setcloseModal] =useState(true);
+    
 
   
 
@@ -72,12 +71,6 @@ const CatRusel = () => {
         setSelectedCat(cat);
         setIsModalOpen(true);
         };
-    
-     
-    const CloseModal = () => {
-        setIsModalOpen(false);
-        setSelectedCat(null);
-    };
 
     const truncateText = (text, maxLength) => {
         if (text.length <= maxLength) return text;
@@ -128,15 +121,13 @@ const CatRusel = () => {
             </button>
            
             {isModalOpen && selectedCat && (
-                <div className="[&_h2]:text-2xl"><Modal 
+                <Modal 
                   isOpen={isModalOpen} 
-                  title={selectedCat.name} 
-                  onClose={CloseModal}
-                  className="text-2xl"
+                  title={selectedCat.name}                
+                  onClose={() => setIsModalOpen(false)}
                 >
                   <CatDetails cat={selectedCat} />
-                </Modal>
-                </div>
+                </Modal>                
             )}
         </div>
     );
