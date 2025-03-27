@@ -14,6 +14,12 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Adopt from './pages/Adopt/Adopt';
 import './App.css';
+import ThemeToggle from './components/Switch/ThemeInit';
+import { ThemeProvider } from './contexts/ThemeContext';
+import Favorites from './pages/Favorites/Favorites';
+import { FavoritesProvider } from './contexts/FavoritesContext';
+import { HomeProvider } from './contexts/HomeContext';
+import AboutUs from './pages/AboutUs/AboutUs';
 
 /**
  * Componente App que renderiza el diseño principal y usa `Routes` para el path de la app.
@@ -26,20 +32,23 @@ import './App.css';
 
 function App() {
   return (
-    <>
-      <Header />
-      
-      {/* Contenido principal con altura dinámica y asegure scroll sin afectar footer */}
-      <main className="flex flex-col justify-center min-h-[calc(100vh-190px)]">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/adopt" element={<Adopt />} />
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-      </main>
-      
-      <Footer />
-    </>
+    <HomeProvider>
+        <FavoritesProvider>
+            <ThemeProvider>
+                <Header />
+                <main className="flex px-2 flex-col bg-gray-100 items-center dark:bg-gray-900 justify-center min-h-[calc(100vh-188px)] py-6" data-theme="">
+                    <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/adopt" element={<Adopt />} />
+                    <Route path="/fav" element={<Favorites />} />
+                    <Route path='/about-us' element={<AboutUs/>}/>
+                    <Route path="*" element={<Navigate to="/" />} />
+                    </Routes>
+                </main>            
+                <Footer />
+            </ThemeProvider>
+        </FavoritesProvider>
+    </HomeProvider>
   )
 }
 

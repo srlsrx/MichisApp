@@ -1,0 +1,20 @@
+{
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "include": ["src"],
+        "includePattern": ".jsx?$",
+        "excludePattern": "(node_modules|docs)"
+    },
+    "plugins": ["plugins/markdown"],
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true
+    },
+    "opts": {
+        "destination": "./docs",
+        "recurse": true,
+        "template": "templates/default"
+    }
+}

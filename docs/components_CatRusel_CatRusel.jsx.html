@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/CatRusel/CatRusel.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/CatRusel/CatRusel.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useContext, useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
+import { motion, AnimatePresence } from "framer-motion";
+import { TbPlayerTrackPrev, TbPlayerTrackNext } from "react-icons/tb";
+import CatCard from "../CatCard/CatCard";
+import { HomeContext } from "../../contexts/HomeContext";
+import Modal from "../Modal/Modal";
+import CatDetails from "../CatDetails/CatDetails";
+import "./CatRusel.css";
+
+/**
+ * Componente que engloba los componentes `CatCard` y desliza permitiendo la navegación entre ellos.
+ *
+ * @returns {JSX.Element} - Renderizado del componente CatRusel y los componentes `CatCard`
+ * @author {Ana Castro}
+ */
+
+const CatRusel = () => {
+  const [index, setIndex] = useState(0);
+  const [printCardsResolution, setPrintCardsResolution] = useState(4);
+  const [direction, setDirection] = useState(1);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [selectedCat, setSelectedCat] = useState(null);
+  const { homeList } = useContext(HomeContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const nextIndex = () => {
+    if (isAnimating || homeList.length === 0) return;
+    setIsAnimating(true);
+    setDirection(1);
+
+    setTimeout(() => {
+      setIndex((prev) => (prev + printCardsResolution) % homeList.length);
+      setIsAnimating(false);
+    }, 100);
+  };
+
+  const prevIndex = () => {
+    if (isAnimating || homeList.length === 0) return;
+    setIsAnimating(true);
+    setDirection(-1);
+
+    setTimeout(() => {
+      setIndex(
+        (prev) =>
+          (prev - printCardsResolution + homeList.length) % homeList.length
+      );
+      setIsAnimating(false);
+    }, 100);
+  };
+
+  useEffect(() => {
+    const printCardsResolution = () => {
+      const width = window.innerWidth;
+      let newCount;
+
+      if (width &lt; 700) newCount = 1;
+      else if (width &lt; 1000) newCount = 2;
+      else if (width &lt; 1200) newCount = 3;
+      else newCount = 4;
+
+      setPrintCardsResolution(newCount);
+    };
+
+    printCardsResolution();
+    window.addEventListener("resize", printCardsResolution);
+    return () => window.removeEventListener("resize", printCardsResolution);
+  }, []);
+
+  const OpenModal = (cat) => {
+    setSelectedCat(cat);
+    setIsModalOpen(true);
+  };
+
+  const truncateText = (text, maxLength) => {
+    if (text.length &lt;= maxLength) return text;
+    const trimmed = text.slice(0, maxLength);
+    const lastSpace = trimmed.lastIndexOf(" ");
+    return trimmed.slice(0, lastSpace) + "...";
+  };
+
+  return (
+    &lt;div className="w-[100%] slider-container flex justify-center items-center box-content">
+      &lt;button
+        className="nav-button cursor-pointer prev md:ml-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md p-1 w-9 h-9 md:w-12 md:h-12 transition"
+        onClick={prevIndex}
+      >
+        &lt;TbPlayerTrackPrev />
+      &lt;/button>
+      &lt;div className="p-4 w-[80%] grid justify-items-center grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))]">
+        &lt;AnimatePresence mode="popLayout">
+          &lt;motion.div
+            key={`${index}-${printCardsResolution}`}
+            initial={{ x: direction * 100 + "%", opacity: 0 }}
+            animate={{ x: "0%", opacity: 1 }}
+            exit={{ x: -direction * 100 + "%", opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="flex gap-6 px-3 py-6 min-h-80 justify-center"
+          >
+            {homeList.length > 0 &amp;&amp;
+              Array.from({ length: printCardsResolution }, (_, i) => {
+                const cardIndex = (index + i) % homeList.length;
+                return (
+                  &lt;CatCard
+                    key={homeList[cardIndex].id}
+                    action={() => setSelectedCat(homeList[cardIndex])}
+                    product={homeList[cardIndex]}
+                    id={homeList[cardIndex].id}
+                    url={homeList[cardIndex].url}
+                    breeds={homeList[cardIndex].breeds[0].name}
+                    description={truncateText(
+                      homeList[cardIndex].breeds[0].description,
+                      150
+                    )}
+                    name={homeList[cardIndex].name}
+                    temperament={homeList[cardIndex].temperament}
+                    seeInfo={() => OpenModal(homeList[cardIndex])}
+                  />
+                );
+              })}
+          &lt;/motion.div>
+        &lt;/AnimatePresence>
+      &lt;/div>
+      &lt;button
+        className="nav-button cursor-pointer prev md:mr-6 bg-transparent hover:bg-gradient-to-r to-[#44B8A7] from-[#4FC560] text-[#44B8A7] hover:text-gray-100 dark:hover:text-gray-600 text-xl border-2 flex justify-center items-center rounded-full shadow-md p-1 w-9 h-9 md:w-12 md:h-12 transition"
+        onClick={nextIndex}
+      >
+        &lt;TbPlayerTrackNext />
+      &lt;/button>
+
+      {isModalOpen &amp;&amp; selectedCat &amp;&amp; (
+        &lt;Modal
+          isOpen={isModalOpen}
+          title={selectedCat.name}
+          onClose={() => setIsModalOpen(false)}
+        >
+          &lt;CatDetails cat={selectedCat} />
+        &lt;/Modal>
+      )}
+    &lt;/div>
+  );
+};
+
+export default CatRusel;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-Footer.html">Footer</a></li><li><a href="module-Header.html">Header</a></li><li><a href="module-Sidebar.html">Sidebar</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AboutUs">AboutUs</a></li><li><a href="global.html#Adopt">Adopt</a></li><li><a href="global.html#AdoptForm">AdoptForm</a></li><li><a href="global.html#Button">Button</a></li><li><a href="global.html#CatCard">CatCard</a></li><li><a href="global.html#CatDetails">CatDetails</a></li><li><a href="global.html#CatRusel">CatRusel</a></li><li><a href="global.html#CatService">CatService</a></li><li><a href="global.html#Favorites">Favorites</a></li><li><a href="global.html#FavoritesButton">FavoritesButton</a></li><li><a href="global.html#FavoritesGrid">FavoritesGrid</a></li><li><a href="global.html#FavoritesProvider">FavoritesProvider</a></li><li><a href="global.html#FormError">FormError</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#HomeProvider">HomeProvider</a></li><li><a href="global.html#LanguageSwitcher">LanguageSwitcher</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#SwitchToggle">SwitchToggle</a></li><li><a href="global.html#ThemeContext">ThemeContext</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li><li><a href="global.html#favoritesReducer">favoritesReducer</a></li><li><a href="global.html#homeReducer">homeReducer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Mar 27 2025 23:10:43 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
