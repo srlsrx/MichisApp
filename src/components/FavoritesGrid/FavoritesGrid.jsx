@@ -13,7 +13,7 @@ const FavoritesGrid = () => {
     const { favorites } = useContext(FavoritesContext);
 
     return (
-        <div className="grid justify-items-center grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))] w-[78%] gap-15 py-15">
+        <div className="grid justify-center grid-cols-[repeat(auto-fit,_minmax(280px,_320px))] w-[78%] gap-15 py-15">
             {favorites.map((favorite, index) => (
                 <CatCard
                     key={favorite.id || index}
