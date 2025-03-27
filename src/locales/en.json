@@ -7,6 +7,13 @@
     "construction": "Page under construction",
     "construction_text": "We are working to offer you a better experience. Please, come back soon!",
     "about_us": "About Us",
+    "Breed": "Breed",
+    "Description": "Descripción",
+    "Temperament": "Temperament",
+    "Age": "Age",
+    "Vaccines": "Vaccines",
+    "Yes": "Yes",    
+    "Ver_mas": "See more",
     "temperament": {
         "playful_affectionate": "Playful and affectionate",
         "calm_cuddly": "Calm and cuddly",
