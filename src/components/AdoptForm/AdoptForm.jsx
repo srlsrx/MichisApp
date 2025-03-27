@@ -77,7 +77,7 @@ function AdoptForm({ catName }) {
           <div>
             <label
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-              for="tel"
+              htmlFor="tel"
             >
               ¿Teléfono?
             </label>
