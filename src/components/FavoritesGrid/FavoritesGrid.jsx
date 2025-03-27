@@ -12,6 +12,8 @@ import CatCard from "../CatCard/CatCard";
 const FavoritesGrid = () => {
     const { favorites } = useContext(FavoritesContext);
 
+    if(favorites.length <= 0) return(<div><h1 className="text-red-500 text-lg border border-red-300 rounded bg-red-100 p-2 mt-5">Aún no has seleccionado nigún michi como tu favorito 😿 Seleciona los que quieras! 🐱</h1></div>)
+
     return (
         <div className="grid justify-center grid-cols-[repeat(auto-fit,_minmax(280px,_320px))] w-[78%] gap-15 py-15">
             {favorites.map((favorite, index) => (

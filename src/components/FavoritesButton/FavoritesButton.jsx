@@ -24,7 +24,7 @@ const FavoritesButton = ({ product }) => {
     };
 
     return (
-        <button onClick={toggleFavorite} className="p-2 absolute top-0 right-0">
+        <button onClick={toggleFavorite} className="p-2 absolute top-0 right-0 cursor-pointer">
             <Star className={`w-8 h-8 transition-all duration-300 ${isFavorite ? "fill-teal-500 text-teal-500" : "fill-transparent text-teal-500"}`} fill="currentColor"/>
         </button>
     );
