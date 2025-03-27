@@ -1,5 +1,16 @@
 import { HiSun, HiMoon } from "react-icons/hi";
 
+/**
+ * @component SwitchToggle
+ * @description Interruptor visual que permite cambiar entre dos estados (como modo claro/oscuro). Muestra iconos de sol y luna, e incluye animaciones suaves al cambiar de estado.
+ * @author Nico Fernández
+ *
+ * @param {Object} props - Propiedades del componente.
+ * @param {boolean} props.checked - Estado actual del interruptor (activado o desactivado).
+ * @param {Function} props.onChange - Función que se ejecuta al cambiar el estado del interruptor.
+ *
+ * @returns {JSX.Element} Componente de interruptor accesible con animaciones y soporte para temas.
+ */
 function SwitchToggle({ checked, onChange }) {
   return (
     <label className="relative inline-flex items-center cursor-pointer">

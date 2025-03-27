@@ -8,8 +8,6 @@ import axios from "axios";
  * @returns {Object[]} 
  * @author {Ana Castro}
  */
-
-
 const CatService = async () => {
     try {
         const response = await axios.get(

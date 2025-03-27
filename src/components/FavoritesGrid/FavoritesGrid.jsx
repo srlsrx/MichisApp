@@ -2,6 +2,13 @@ import { useContext } from "react";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
 import CatCard from "../CatCard/CatCard";
 
+/**
+ * @component FavoritesGrid
+ * @description Renderiza una cuadrícula de tarjetas de gatos favoritos usando el contexto de favoritos. Cada gato se muestra como un componente `CatCard`.
+ * @author Ana Castro
+ *
+ * @returns {JSX.Element} Cuadrícula responsive con los gatos favoritos del usuario.
+ */
 const FavoritesGrid = () => {
     const { favorites } = useContext(FavoritesContext);
 

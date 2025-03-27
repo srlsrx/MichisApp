@@ -1,3 +1,15 @@
+/**
+ * @function homeReducer
+ * @description Función reductora que gestiona el estado global de la home. Maneja la acción "SET_HOME_LIST" para actualizar la lista principal de gatos.
+ * @author Ana Castro
+ *
+ * @param {Object} state - Estado actual de la home.
+ * @param {Object} action - Acción que se desea ejecutar.
+ * @param {string} action.type - Tipo de acción a ejecutar.
+ * @param {*} action.payload - Datos asociados a la acción.
+ *
+ * @returns {Object} Nuevo estado actualizado.
+ */
 export const initialState = {
     homeList: [],
   };
@@ -10,10 +22,3 @@ export const initialState = {
         return state;
     }
   };
-  
-
-
-
-
-//creo la lista que cojo de la api, que es la que se mostrara en el carrusel 
-// de home "homeList", y se la asigno al estado inicial
