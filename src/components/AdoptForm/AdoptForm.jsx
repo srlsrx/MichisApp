@@ -5,6 +5,7 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 import Lottie from "lottie-react";
 import success from "../../assets/animations/success.json";
+import { useTranslation } from "react-i18next";
 
 /**
  * Formulario de adopción para un gato específico.
@@ -16,7 +17,7 @@ import success from "../../assets/animations/success.json";
  * @param {Object} props - Propiedades del componente.
  * @param {string} props.catName - Nombre del gato.
  * @returns {JSX.Element} Formulario renderizado.
- * @author Ángel
+ * @author {Ángel Aragón}
  */
 function AdoptForm({ catName }) {
   const {
@@ -25,10 +26,13 @@ function AdoptForm({ catName }) {
     formState: { errors },
   } = useForm();
 
+  const [response, setResponse] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const { t } = useTranslation();
+
   const onSubmit = (data) => {
-    console.log("Formulario enviado:", data);
+    setResponse(data);
     setIsModalOpen(true);
   };
 
@@ -36,7 +40,7 @@ function AdoptForm({ catName }) {
     <>
       <div className="xl:w-[30%]">
         <h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400 text-center">
-          Formulario de adopción de {catName}
+          {t("adopt_form_title")} {catName}
         </h2>
 
         <form
@@ -44,22 +48,24 @@ function AdoptForm({ catName }) {
           className="space-y-6 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md"
         >
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-            Los campos marcados con{" "}
-            <span className="text-teal-500 font-bold">*</span> son obligatorios.
+            {t("adopt_form_info_start")}{" "}
+            <span className="text-teal-500 font-bold">*</span>{" "}
+            {t("adopt_form_info_end")}.
           </p>
           <div>
             <label
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-              for=""
+              for="name"
             >
-              Nombre completo<span className="text-teal-500">*</span>
+              {t("adopt_form_name_label")}
+              <span className="text-teal-500">*</span>
             </label>
             <input
               id="name"
               type="text"
-              {...register("name", { required: "Este campo es obligatorio" })}
+              {...register("name", { required: t("adopt_form_required") })}
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-400"
-              placeholder="Tu nombre"
+              placeholder={t("adopt_form_name_placeholder")}
             />
             <FormError message={errors.name?.message} />
           </div>
@@ -69,54 +75,58 @@ function AdoptForm({ catName }) {
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
               for="email"
             >
-              Correo electrónico<span className="text-teal-500">*</span>
+              {t("adopt_form_email_label")}
+              <span className="text-teal-500">*</span>
             </label>
             <input
               id="email"
               type="email"
               {...register("email", {
-                required: "Este campo es obligatorio",
+                required: t("adopt_form_required"),
                 pattern: {
                   value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-                  message: "Email no válido",
+                  message: t("adopt_form_email_invalid"),
                 },
               })}
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-400"
-              placeholder="tucorreo@ejemplo.com"
+              placeholder={t("adopt_form_email_placeholder")}
             />
             <FormError message={errors.email?.message} />
           </div>
           <div>
             <label
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-              htmlFor="tel"
+              htmlFor="tlf"
             >
-              ¿Teléfono?<span className="text-teal-500">*</span>
+              {t("adopt_form_tlf_label")}
+              <span className="text-teal-500">*</span>
             </label>
             <input
-              id="tel"
-              type="tel"
-              {...register("tel", {
-                required: "Este campo es obligatorio",
+              id="tlf"
+              type="tlf"
+              {...register("tlf", {
+                required: t("adopt_form_required"),
                 pattern: {
                   value: /^[0-9]{9}$/,
-                  message: "El telefono debe tener 9 dígitos",
+                  message: t("adopt_form_tlf_invalid"),
                 },
               })}
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-400"
               placeholder="982 XXX XXX"
             />
-            <FormError message={errors.tel?.message} />
+            <FormError message={errors.tlf?.message} />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              ¿Por qué quieres adoptar?
-              <span className="text-gray-400 text-xs">(opcional)</span>
+              {t("adopt_form_msg_label")}
+              <span className="text-gray-400 text-xs">
+                ({t("adopt_form_msg_label_opt")})
+              </span>
             </label>
             <textarea
               {...register("message")}
               className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-400"
-              placeholder="Cuéntanos un poco sobre ti..."
+              placeholder={t("adopt_form_msg_placeholder")}
               rows={4}
             />
           </div>
@@ -127,12 +137,15 @@ function AdoptForm({ catName }) {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="¡Solicitud enviada!"
+        title={t("adopt_form_modal_title")}
         icon={<Lottie animationData={success} />}
       >
         <p className="text-sm">
-          Gracias por querer adoptar a <strong>{catName}</strong>. Nos pondremos
-          en contacto contigo pronto 🐾
+          😸 {t("adopt_form_modal_msg_thx")} <strong>{response?.name}</strong>{" "}
+          {t("adopt_form_modal_msg_adopt")} <strong>{catName}</strong> 🩵
+          <br />
+          {t("adopt_form_modal_msg_contact")} <strong>{response?.email}</strong>{" "}
+          😽.
         </p>
       </Modal>
     </>
