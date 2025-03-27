@@ -1,6 +1,13 @@
 import { useTranslation } from "react-i18next";
 import Flag from "react-world-flags";
 
+/**
+ * @component LanguageSwitcher
+ * @description Botón que permite alternar entre los idiomas español e inglés usando i18next. Muestra la bandera del idioma al que se cambiará.
+ * @author Nico Fernández
+ *
+ * @returns {JSX.Element} Botón con bandera que alterna el idioma de la aplicación entre "es" y "en".
+ */
 function LanguageSwitcher() {
     const { i18n } = useTranslation();
 

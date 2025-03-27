@@ -3,8 +3,19 @@ import Button from '../Button/Button';
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-
-
+/**
+ * @component CatDetails
+ * @description Muestra los detalles de un gato, incluyendo imagen, raza, descripción, temperamento,
+ *              edad y estado de vacunación. También permite realizar una acción (como adoptar) mediante un botón.
+ * @author Ana Castro
+ *
+ * @param {Object} props - Propiedades del componente.
+ * @param {Object} props.cat - Objeto del gato a mostrar. Contiene propiedades como `url`, `name` y `breeds`.
+ * @param {Function} props.action - Función opcional que representa una acción a ejecutar (no utilizada directamente aquí).
+ * @param {string} props.text - Texto opcional que puede usarse en la interfaz (no utilizado directamente aquí).
+ *
+ * @returns {JSX.Element} Componente que renderiza los detalles del gato y un botón para adoptar.
+ */
 const CatDetails = ({ cat, action, text }) => {
     const catMock = gatos.find(g => g.nombre === cat.name);
     const { t } = useTranslation();
